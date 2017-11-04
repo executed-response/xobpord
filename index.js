@@ -4,6 +4,10 @@
 // var example = require('./example');
 
 // load manifests
+
+window.Popper = require('popper.js')
+require('bootstrap')
+
 // scripts
 require('./assets/scripts/index.js')
 
