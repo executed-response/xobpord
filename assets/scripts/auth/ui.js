@@ -7,7 +7,8 @@ const clearForm = function (id) {
 }
 
 const signInSuccess = function (data) {
-  $('#sign-in-div').addClass('d-none')
+  $('#sign-in-div').hide()
+  $('.active-after-signin').show()
   store.user = data.user
 }
 
@@ -17,19 +18,21 @@ const signInFailure = function (error) {
 }
 
 const newUser = function () {
-  $('#sign-in-div').addClass('d-none')
-  $('#sign-up-div').removeClass('d-none')
+  $('#sign-in-div').hide()
+  clearForm('#sign-up')
+  $('#sign-up-div').show()
 }
 
 const signUpCancel = function () {
-  $('#sign-up-div').addClass('d-none')
-  $('#sign-in-div').removeClass('d-none')
-  clearForm('#sign-up')
+  $('#sign-up-div').hide()
+  clearForm('#sign-in')
+  $('#sign-in-div').show()
 }
 
 const signUpSuccess = function (data) {
-  $('#sign-up-div').addClass('d-none')
-  $('#sign-in-div').removeClass('d-none')
+  $('#sign-up-div').hide()
+  clearForm('#sign-in')
+  $('#sign-in-div').show()
 }
 
 const signUpFailure = function () {
@@ -37,8 +40,7 @@ const signUpFailure = function () {
 }
 
 const changePasswordSuccess = function () {
-  $('#change-password-div').addClass('d-none')
-  $('#nav-user-dropdown-change-password').removeClass('disabled')
+  $('#change-password-div').hide()
 }
 
 const changePasswordFailure = function () {
@@ -46,24 +48,23 @@ const changePasswordFailure = function () {
 }
 
 const changePasswordForm = function () {
-  $('#change-password-div').removeClass('d-none')
+  clearForm('#change-password')
+  $('#change-password-div').show()
 }
 
 const changePasswordCancel = function () {
-  $('#nav-user-dropdown-change-password').removeClass('disabled')
-  $('#change-password-div').addClass('d-none')
+  $('#change-password-div').hide()
 }
 
 const signOutSuccess = function () {
   store.user = null
-  $('#nav-user-dropdown-change-password').removeClass('d-none')
-  $('#nav-user-dropdown').addClass('d-none')
-  $('#change-password-div').addClass('d-none')
-  $('#sign-in-div').removeClass('d-none')
+  $('.active-after-signin').hide()
+  clearForm('#sign-in')
+  $('#sign-in-div').show()
 }
 
 const signOutFailure = function () {
-  console.log('sign out failure')
+  signOutFailure()
 }
 
 module.exports = {
