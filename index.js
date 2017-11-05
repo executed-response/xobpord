@@ -7,6 +7,7 @@
 
 window.Popper = require('popper.js')
 require('bootstrap')
+require('bootstrap-notify')
 
 // scripts
 require('./assets/scripts/index.js')
