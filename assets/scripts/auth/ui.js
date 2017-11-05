@@ -59,6 +59,7 @@ const changePasswordCancel = function () {
 const signOutSuccess = function () {
   store.user = null
   $('.active-after-signin').hide()
+  $('#change-password-div').hide()
   clearForm('#sign-in')
   $('#sign-in-div').show()
 }
