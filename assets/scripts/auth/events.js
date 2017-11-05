@@ -13,10 +13,6 @@ const onSignIn = function (event) {
     .catch(ui.signInFailure)
 }
 
-const onNewUser = function () {
-  ui.newUser()
-}
-
 const onSignUpCancel = function (event) {
   event.preventDefault()
   ui.signUpCancel()
@@ -28,10 +24,6 @@ const onSignUp = function (event) {
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
-}
-
-const onChangePasswordForm = function () {
-  ui.changePasswordForm()
 }
 
 const onChangePasswordCancel = function (event) {
@@ -55,10 +47,10 @@ const onSignOut = function (event) {
 
 const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
-  $('#new-user').on('click', onNewUser)
+  $('#new-user').on('click', ui.newUser)
   $('#new-user-cancel').on('click', onSignUpCancel)
   $('#sign-up').on('submit', onSignUp)
-  $('#change-password-form').on('click', onChangePasswordForm)
+  $('#change-password-form').on('click', ui.changePasswordForm)
   $('#change-password-cancel').on('click', onChangePasswordCancel)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
