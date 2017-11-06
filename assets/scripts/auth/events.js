@@ -4,6 +4,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
 
 const onSignIn = function (event) {
   event.preventDefault()
@@ -57,7 +58,22 @@ const onUploadFile = function (event) {
 const onViewFiles = function () {
   return api.viewFiles()
     .then(ui.viewFilesSuccess)
+    .then(function () {
+      $('.delete-file-btn').on('click', onDeleteFile)
+    })
     .catch(ui.viewFilesFailure)
+}
+
+const onDeleteFile = function (event) {
+  const uploadId = event.target.getAttribute('data-id')
+  store.uploadId = uploadId
+}
+
+const onDeleteFileConfirm = function () {
+  api.deleteFile(store.uploadId)
+    .then(ui.deleteFileSuccess)
+    .then(onViewFiles)
+    .catch(ui.deleteFileFailure)
 }
 
 const addHandlers = function () {
@@ -70,6 +86,7 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
   $('#upload-form').on('submit', onUploadFile)
+  $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
 }
 
 module.exports = {

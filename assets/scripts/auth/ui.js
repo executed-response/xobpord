@@ -90,6 +90,18 @@ const viewFilesFailure = function () {
   redNotification('Failed to get users files')
 }
 
+const deleteFileSuccess = function (files) {
+  store.uploadId = null
+  $('#confirmDeleteModal').modal('hide')
+  greenNotification('File deleted')
+}
+
+const deleteFileFailure = function () {
+  store.uploadId = null
+  $('#confirmDeleteModal').modal('hide')
+  redNotification('Failed to delete file')
+}
+
 const greenNotification = function (text, time = 1000, isDismissable = false) {
   $.notify({
     message: text
@@ -155,5 +167,7 @@ module.exports = {
   uploadFileFailure,
   viewFilesSuccess,
   viewFilesFailure,
+  deleteFileSuccess,
+  deleteFileFailure,
   clearForm
 }
