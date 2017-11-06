@@ -107,11 +107,13 @@ const viewFilesFailure = function () {
 }
 
 const deleteFileSuccess = function (files) {
+  store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
   greenNotification('File deleted')
 }
 
 const deleteFileFailure = function () {
+  store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
   redNotification('Failed to delete file')
 }
