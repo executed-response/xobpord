@@ -77,17 +77,6 @@ const signOutFailure = function () {
   signOutFailure()
 }
 
-const showUploadForm = function () {
-  clearForm('#upload-form')
-  $('#home-page').hide()
-  $('#upload-form-div').show()
-}
-
-const hideUploadForm = function () {
-  $('#upload-form-div').hide()
-  $('#home-page').show()
-}
-
 const uploadFileSuccess = function () {
   greenNotification('Uploaded file successfully')
 }
@@ -157,8 +146,6 @@ module.exports = {
   changePasswordCancel,
   signOutSuccess,
   signOutFailure,
-  showUploadForm,
-  hideUploadForm,
   uploadFileSuccess,
   uploadFileFailure
 }
