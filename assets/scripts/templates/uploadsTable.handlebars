@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       {{#each uploads as |upload| }}
-      <tr id="{{upload._id}}">
+      <tr class='clickable-row' style="cursor: pointer" id="{{upload._id}}">
         <td>{{upload.filename}}</td>
         <td>{{upload.description}}</td>
         <td>{{upload.tags}}</td>
