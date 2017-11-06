@@ -1,0 +1,20 @@
+<div class="table-responsive">
+  <table class="table table-hover text-center table-border table-striped table-condensed" id="upload-table">
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Description</th>
+        <th>Tags</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each uploads as |upload| }}
+      <tr id="{{upload._id}}">
+        <td>{{upload.filename}}</td>
+        <td>{{upload.description}}</td>
+        <td>{{upload.tags}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

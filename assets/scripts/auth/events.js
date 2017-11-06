@@ -10,6 +10,7 @@ const onSignIn = function (event) {
   const data = getFormFields(this)
   api.signIn(data)
     .then(ui.signInSuccess)
+    .then(onViewFiles)
     .catch(ui.signInFailure)
 }
 
@@ -51,6 +52,12 @@ const onUploadFile = function (event) {
   api.uploadFile(data)
     .then(ui.uploadFileSuccess)
     .catch(ui.uploadFileFailure)
+}
+
+const onViewFiles = function () {
+  return api.viewFiles()
+    .then(ui.viewFilesSuccess)
+    .catch(ui.viewFilesFailure)
 }
 
 const addHandlers = function () {
