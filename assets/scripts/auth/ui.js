@@ -3,6 +3,10 @@
 const store = require('../store.js')
 const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 
+const clearForm = function (id) {
+  $(id)[0].reset()
+}
+
 const signInSuccess = function (data) {
   $('#sign-in-div').hide()
   $('.active-after-signin').show()
@@ -150,5 +154,6 @@ module.exports = {
   uploadFileSuccess,
   uploadFileFailure,
   viewFilesSuccess,
-  viewFilesFailure
+  viewFilesFailure,
+  clearForm
 }
