@@ -81,7 +81,14 @@ const onDeleteFileConfirm = function () {
 const onRowClick = function (event) {
   // placeholder function for event when user clicks on table row.
   // console.log('user clicked on row ', event.target.parentNode.id)
-  $(this).addClass('bg-info').siblings().removeClass('bg-info')
+  // $(this).addClass('bg-info').siblings().removeClass('bg-info')
+  onViewFile(event.target.parentNode.id)
+}
+
+const onViewFile = function (id) {
+  api.viewFile(id)
+    .then(ui.viewFileSuccess)
+    .catch(ui.viewFileFailure)
 }
 
 const addHandlers = function () {

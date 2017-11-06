@@ -73,6 +73,16 @@ const deleteFile = function () {
   })
 }
 
+const viewFile = function (id) {
+  return $.ajax({
+    url: config.apiOrigin + 'uploads/' + id,
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signIn,
   signUp,
@@ -80,5 +90,6 @@ module.exports = {
   signOut,
   uploadFile,
   viewFiles,
-  deleteFile
+  deleteFile,
+  viewFile
 }

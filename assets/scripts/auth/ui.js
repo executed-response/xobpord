@@ -89,7 +89,7 @@ const viewFilesFailure = function () {
   redNotification('Failed to get users files')
 }
 
-const deleteFileSuccess = function (files) {
+const deleteFileSuccess = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
   greenNotification('File deleted')
@@ -99,6 +99,16 @@ const deleteFileFailure = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
   redNotification('Failed to delete file')
+}
+
+const viewFileSuccess = function () {
+  greenNotification('File viewed')
+  $('#home-page').hide()
+  $('#view-file-div').show()
+}
+
+const viewFileFailure = function () {
+  redNotification('Failed to view file')
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -168,5 +178,7 @@ module.exports = {
   viewFilesFailure,
   deleteFileSuccess,
   deleteFileFailure,
-  clearForm
+  clearForm,
+  viewFileSuccess,
+  viewFileFailure
 }

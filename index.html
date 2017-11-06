@@ -135,8 +135,8 @@
         <div class="row justify-content-center mt-1" id="view-file-div" style="display: none;">
           <div class="col-12 col-md-8 col-xl-6">
             <div class='d-flex'>
-              <button type="button" class="btn btn-primary mr-auto p-2">Back</button>
-              <button type="button" class="btn btn-primary mx-1 p-2">Delete</button>
+              <button type="button" class="btn btn-secondary mr-auto p-2">Back</button>
+              <button type="button" class="btn btn-danger mx-1 p-2">Delete</button>
               <button type="button" class="btn btn-primary mx-1 p-2">Download</button>
             </div>
             <form class="mb-1" id="view-file">
@@ -153,7 +153,9 @@
                 <label for="tags">Tags</label>
                 <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags">
               </div>
-              <button type="submit" class="btn btn-primary" name="submit">Save</button>
+              <div class='d-flex'>
+                <button type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
+              </div>
             </form>
           </div>
         </div>
