@@ -5,6 +5,7 @@
         <th>Filename</th>
         <th>Description</th>
         <th>Tags</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -13,6 +14,9 @@
         <td>{{upload.filename}}</td>
         <td>{{upload.description}}</td>
         <td>{{upload.tags}}</td>
+        <td>
+          <a class="nav-link btn btn-danger p-2 m-2 delete-file-btn" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal">Delete</a>
+        </td>
       </tr>
       {{/each}}
     </tbody>
