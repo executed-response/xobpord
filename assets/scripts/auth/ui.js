@@ -112,6 +112,7 @@ const viewFileSuccess = function (response) {
   $('#filename').val(response.upload.filename)
   $('#description').val(response.upload.description)
   $('#tags').val(response.upload.tags)
+  $('#view-download-button').attr('href', response.upload._url)
 }
 
 const updateFileSuccess = function () {
