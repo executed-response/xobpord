@@ -93,23 +93,38 @@ const viewFilesFailure = function () {
 const deleteFileSuccess = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
+  $('#view-file-div').hide()
+  $('#home-page').show()
   greenNotification('File deleted')
 }
 
 const deleteFileFailure = function () {
-  store.uploadId = null
+  store.uploadId = null // delete this line of code since if a user retries and the server is up again it won't work?
   $('#confirmDeleteModal').modal('hide')
   redNotification('Failed to delete file')
 }
 
 const viewFileSuccess = function (response) {
+  store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#view-file-div').show()
-  console.log('this is the response', response)
   $('#filename').val(response.upload.filename)
   $('#description').val(response.upload.description)
   $('#tags').val(response.upload.tags)
+  $('#view-download-button').attr('href', response.upload._url)
+}
+
+const updateFileSuccess = function () {
+  store.uploadId = null
+  $('#view-file-div').hide()
+  $('#home-page').show()
+  greenNotification('File updated')
+}
+
+const updateFileFailure = function () {
+  store.uploadId = null // delete this line of code since if a user retries and the server is up again it won't work?
+  redNotification('Failed to update file')
 }
 
 const viewFileFailure = function () {
@@ -118,6 +133,11 @@ const viewFileFailure = function () {
 
 const showDeleteModal = function () {
   $('#confirmDeleteModal').modal('show')
+}
+
+const showHomePage = function () {
+  $('#view-file-div').hide()
+  $('#home-page').show()
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -190,5 +210,8 @@ module.exports = {
   clearForm,
   viewFileSuccess,
   viewFileFailure,
-  showDeleteModal
+  showDeleteModal,
+  showHomePage,
+  updateFileSuccess,
+  updateFileFailure
 }

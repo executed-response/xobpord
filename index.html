@@ -135,26 +135,26 @@
         <div class="row justify-content-center mt-1" id="view-file-div" style="display: none;">
           <div class="col-12 col-md-8 col-xl-6">
             <div class='d-flex'>
-              <button type="button" class="btn btn-secondary mr-auto p-2">Back</button>
-              <button type="button" class="btn btn-danger mx-1 p-2">Delete</button>
-              <button type="button" class="btn btn-primary mx-1 p-2">Download</button>
+              <button id="view-back-button" type="button" class="btn btn-secondary mr-auto p-2">Back</button>
+              <button id="view-delete-button" type="button" class="btn btn-danger mx-1 p-2">Delete</button>
+              <a href="#" id="view-download-button" class="btn btn-primary mx-1 p-2">Download</a>
             </div>
             <form class="mb-1" id="view-file">
               <h3>Your File</h3>
               <div class="form-group">
                 <label for="filename">Filename</label>
-                <input type="text" class="form-control" id="filename" name="filename" placeholder="Filename" required>
+                <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" required>
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea rows="4" cols="50" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                <textarea rows="4" cols="50" class="form-control" id="description" name="upload[description]" placeholder="Description"></textarea>
               </div>
               <div class="form-group">
                 <label for="tags">Tags</label>
-                <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags">
+                <input type="text" class="form-control" id="tags" name="upload[tags]" placeholder="Tags">
               </div>
               <div class='d-flex'>
-                <button type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
+                <button id="view-save-button" type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
               </div>
             </form>
           </div>
