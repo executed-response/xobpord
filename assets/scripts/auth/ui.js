@@ -20,19 +20,16 @@ const signInFailure = function () {
 
 const newUser = function () {
   $('#sign-in-div').hide()
-  clearForm('#sign-up')
   $('#sign-up-div').show()
 }
 
 const signUpCancel = function () {
   $('#sign-up-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
 }
 
 const signUpSuccess = function (data) {
   $('#sign-up-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
   greenNotification('Signed up successfully')
 }
@@ -54,7 +51,6 @@ const changePasswordFailure = function () {
 const changePasswordForm = function () {
   $('#home-page').hide()
   $('#upload-form-div').hide()
-  clearForm('#change-password')
   $('#change-password-div').show()
 }
 
@@ -69,7 +65,6 @@ const signOutSuccess = function () {
   $('#change-password-div').hide()
   $('#home-page').hide()
   $('#upload-form-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
   greenNotification('Signed out successfully')
 }
@@ -79,7 +74,6 @@ const signOutFailure = function () {
 }
 
 const showUploadForm = function () {
-  clearForm('#upload-form')
   $('#home-page').hide()
   $('#upload-form-div').show()
 }
@@ -155,6 +149,7 @@ const redNotification = function (text, time = 1000, isDismissable = false) {
 }
 
 module.exports = {
+  clearForm,
   signInSuccess,
   signInFailure,
   newUser,
