@@ -78,6 +78,7 @@ const signOutFailure = function () {
 }
 
 const showUploadForm = function () {
+  clearForm('#upload-form')
   $('#home-page').hide()
   $('#upload-form-div').show()
 }
@@ -85,6 +86,14 @@ const showUploadForm = function () {
 const hideUploadForm = function () {
   $('#upload-form-div').hide()
   $('#home-page').show()
+}
+
+const uploadFileSuccess = function () {
+  greenNotification('Uploaded file successfully')
+}
+
+const uploadFileFailure = function () {
+  redNotification('File failed to upload')
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -149,5 +158,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   showUploadForm,
-  hideUploadForm
+  hideUploadForm,
+  uploadFileSuccess,
+  uploadFileFailure
 }
