@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store.js')
+const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 
 const clearForm = function (id) {
   $(id)[0].reset()
@@ -96,6 +97,15 @@ const uploadFileFailure = function () {
   redNotification('File failed to upload')
 }
 
+const viewFilesSuccess = function (files) {
+  $('#upload-table-container').empty()
+  $('#upload-table-container').append(uploadsTableHandlebar(files))
+}
+
+const viewFilesFailure = function () {
+  redNotification('Failed to get users files')
+}
+
 const greenNotification = function (text, time = 1000, isDismissable = false) {
   $.notify({
     message: text
@@ -160,5 +170,7 @@ module.exports = {
   showUploadForm,
   hideUploadForm,
   uploadFileSuccess,
-  uploadFileFailure
+  uploadFileFailure,
+  viewFilesSuccess,
+  viewFilesFailure
 }

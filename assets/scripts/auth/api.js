@@ -53,10 +53,21 @@ const uploadFile = function (data) {
   })
 }
 
+const viewFiles = function () {
+  return $.ajax({
+    url: config.apiOrigin + 'uploads',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signIn,
   signUp,
   changePassword,
   signOut,
-  uploadFile
+  uploadFile,
+  viewFiles
 }
