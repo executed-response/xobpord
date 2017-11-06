@@ -97,9 +97,7 @@ const onViewDelete = function () {
 
 const onUpdateFile = function (event) {
   event.preventDefault()
-  console.log('this is event.target', event.target)
   const data = getFormFields(event.target)
-  console.log('this is data', data)
   api.updateFile(data)
     .then(ui.updateFileSuccess)
     .then(onViewFiles)
