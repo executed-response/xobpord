@@ -90,6 +90,11 @@ const onViewFile = function (id) {
     .catch(ui.viewFileFailure)
 }
 
+const onViewDelete = function () {
+  event.stopPropagation()
+  ui.showDeleteModal()
+}
+
 const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#new-user').on('click', ui.newUser)
@@ -101,6 +106,8 @@ const addHandlers = function () {
   $('#sign-out').on('click', onSignOut)
   $('#upload-form').on('submit', onUploadFile)
   $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
+  $('#view-delete-button').on('click', onViewDelete)
+  $('#view-back-button').on('click', ui.showHomePage)
 }
 
 module.exports = {

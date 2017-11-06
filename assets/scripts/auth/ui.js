@@ -93,6 +93,8 @@ const viewFilesFailure = function () {
 const deleteFileSuccess = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
+  $('#view-file-div').hide()
+  $('#home-page').show()
   greenNotification('File deleted')
 }
 
@@ -103,10 +105,10 @@ const deleteFileFailure = function () {
 }
 
 const viewFileSuccess = function (response) {
+  store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#view-file-div').show()
-  console.log('this is the response', response)
   $('#filename').val(response.upload.filename)
   $('#description').val(response.upload.description)
   $('#tags').val(response.upload.tags)
@@ -118,6 +120,11 @@ const viewFileFailure = function () {
 
 const showDeleteModal = function () {
   $('#confirmDeleteModal').modal('show')
+}
+
+const showHomePage = function () {
+  $('#view-file-div').hide()
+  $('#home-page').show()
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -190,5 +197,6 @@ module.exports = {
   clearForm,
   viewFileSuccess,
   viewFileFailure,
-  showDeleteModal
+  showDeleteModal,
+  showHomePage
 }
