@@ -67,8 +67,10 @@ const onViewFiles = function () {
 }
 
 const onDeleteFile = function (event) {
+  event.stopPropagation()
   const uploadId = event.target.getAttribute('data-id')
   store.uploadId = uploadId
+  ui.showDeleteModal()
 }
 
 const onDeleteFileConfirm = function () {
@@ -79,9 +81,6 @@ const onDeleteFileConfirm = function () {
 }
 
 const onRowClick = function (event) {
-  // placeholder function for event when user clicks on table row.
-  // console.log('user clicked on row ', event.target.parentNode.id)
-  // $(this).addClass('bg-info').siblings().removeClass('bg-info')
   onViewFile(event.target.parentNode.id)
 }
 

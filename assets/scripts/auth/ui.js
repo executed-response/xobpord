@@ -64,6 +64,7 @@ const signOutSuccess = function () {
   $('.active-after-signin').hide()
   $('#change-password-div').hide()
   $('#home-page').hide()
+  $('#view-file-div').hide()
   $('#sign-in-div').show()
   greenNotification('Signed out successfully')
 }
@@ -101,14 +102,22 @@ const deleteFileFailure = function () {
   redNotification('Failed to delete file')
 }
 
-const viewFileSuccess = function () {
+const viewFileSuccess = function (response) {
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#view-file-div').show()
+  console.log('this is the response', response)
+  $('#filename').val(response.upload.filename)
+  $('#description').val(response.upload.description)
+  $('#tags').val(response.upload.tags)
 }
 
 const viewFileFailure = function () {
   redNotification('Failed to view file')
+}
+
+const showDeleteModal = function () {
+  $('#confirmDeleteModal').modal('show')
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -180,5 +189,6 @@ module.exports = {
   deleteFileFailure,
   clearForm,
   viewFileSuccess,
-  viewFileFailure
+  viewFileFailure,
+  showDeleteModal
 }
