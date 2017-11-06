@@ -64,7 +64,6 @@ const signOutSuccess = function () {
   $('.active-after-signin').hide()
   $('#change-password-div').hide()
   $('#home-page').hide()
-  $('#upload-form-div').hide()
   $('#sign-in-div').show()
   greenNotification('Signed out successfully')
 }
