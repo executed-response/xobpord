@@ -40,9 +40,23 @@ const signOut = function () {
   })
 }
 
+const uploadFile = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + 'uploads',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data,
+    contentType: false,
+    processData: false
+  })
+}
+
 module.exports = {
   signIn,
   signUp,
   changePassword,
-  signOut
+  signOut,
+  uploadFile
 }

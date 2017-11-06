@@ -42,6 +42,7 @@ const signUpFailure = function () {
 
 const changePasswordSuccess = function () {
   $('#change-password-div').hide()
+  $('#home-page').show()
   greenNotification('Password changed successfully')
 }
 
@@ -50,18 +51,23 @@ const changePasswordFailure = function () {
 }
 
 const changePasswordForm = function () {
+  $('#home-page').hide()
+  $('#upload-form-div').hide()
   clearForm('#change-password')
   $('#change-password-div').show()
 }
 
 const changePasswordCancel = function () {
   $('#change-password-div').hide()
+  $('#home-page').show()
 }
 
 const signOutSuccess = function () {
   store.user = null
   $('.active-after-signin').hide()
   $('#change-password-div').hide()
+  $('#home-page').hide()
+  $('#upload-form-div').hide()
   clearForm('#sign-in')
   $('#sign-in-div').show()
   greenNotification('Signed out successfully')
@@ -69,6 +75,25 @@ const signOutSuccess = function () {
 
 const signOutFailure = function () {
   signOutFailure()
+}
+
+const showUploadForm = function () {
+  clearForm('#upload-form')
+  $('#home-page').hide()
+  $('#upload-form-div').show()
+}
+
+const hideUploadForm = function () {
+  $('#upload-form-div').hide()
+  $('#home-page').show()
+}
+
+const uploadFileSuccess = function () {
+  greenNotification('Uploaded file successfully')
+}
+
+const uploadFileFailure = function () {
+  redNotification('File failed to upload')
 }
 
 const greenNotification = function (text, time = 1000, isDismissable = false) {
@@ -131,5 +156,9 @@ module.exports = {
   changePasswordForm,
   changePasswordCancel,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  showUploadForm,
+  hideUploadForm,
+  uploadFileSuccess,
+  uploadFileFailure
 }

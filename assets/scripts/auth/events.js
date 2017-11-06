@@ -45,6 +45,14 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onUploadFile = function (event) {
+  event.preventDefault()
+  const data = new FormData(event.target)
+  api.uploadFile(data)
+    .then(ui.uploadFileSuccess)
+    .catch(ui.uploadFileFailure)
+}
+
 const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#new-user').on('click', ui.newUser)
@@ -54,6 +62,9 @@ const addHandlers = function () {
   $('#change-password-cancel').on('click', onChangePasswordCancel)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('#show-upload-form').on('click', ui.showUploadForm)
+  $('#upload-form-cancel').on('click', ui.hideUploadForm)
+  $('#upload-form').on('submit', onUploadFile)
 }
 
 module.exports = {
