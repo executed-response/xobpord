@@ -60,6 +60,7 @@ const onViewFiles = function () {
   return api.viewFiles()
     .then(ui.viewFilesSuccess)
     .then(function () {
+      $('.clickable-row').on('click', onRowClick)
       $('.delete-file-btn').on('click', onDeleteFile)
     })
     .catch(ui.viewFilesFailure)
@@ -75,6 +76,12 @@ const onDeleteFileConfirm = function () {
     .then(ui.deleteFileSuccess)
     .then(onViewFiles)
     .catch(ui.deleteFileFailure)
+}
+
+const onRowClick = function (event) {
+  // placeholder function for event when user clicks on table row.
+  // console.log('user clicked on row ', event.target.parentNode.id)
+  $(this).addClass('bg-info').siblings().removeClass('bg-info')
 }
 
 const addHandlers = function () {
