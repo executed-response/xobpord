@@ -139,7 +139,6 @@ const redNotification = function (text, time = 1000, isDismissable = false) {
 }
 
 module.exports = {
-  clearForm,
   signInSuccess,
   signInFailure,
   newUser,
@@ -155,5 +154,6 @@ module.exports = {
   uploadFileSuccess,
   uploadFileFailure,
   viewFilesSuccess,
-  viewFilesFailure
+  viewFilesFailure,
+  clearForm
 }
