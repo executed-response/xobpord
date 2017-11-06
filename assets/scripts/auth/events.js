@@ -54,6 +54,8 @@ const addHandlers = function () {
   $('#change-password-cancel').on('click', onChangePasswordCancel)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+  $('#show-upload-form').on('click', ui.showUploadForm)
+  $('#upload-form-cancel').on('click', ui.hideUploadForm)
 }
 
 module.exports = {
