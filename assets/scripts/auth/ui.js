@@ -20,19 +20,16 @@ const signInFailure = function () {
 
 const newUser = function () {
   $('#sign-in-div').hide()
-  clearForm('#sign-up')
   $('#sign-up-div').show()
 }
 
 const signUpCancel = function () {
   $('#sign-up-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
 }
 
 const signUpSuccess = function (data) {
   $('#sign-up-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
   greenNotification('Signed up successfully')
 }
@@ -54,7 +51,6 @@ const changePasswordFailure = function () {
 const changePasswordForm = function () {
   $('#home-page').hide()
   $('#upload-form-div').hide()
-  clearForm('#change-password')
   $('#change-password-div').show()
 }
 
@@ -69,24 +65,12 @@ const signOutSuccess = function () {
   $('#change-password-div').hide()
   $('#home-page').hide()
   $('#upload-form-div').hide()
-  clearForm('#sign-in')
   $('#sign-in-div').show()
   greenNotification('Signed out successfully')
 }
 
 const signOutFailure = function () {
   signOutFailure()
-}
-
-const showUploadForm = function () {
-  clearForm('#upload-form')
-  $('#home-page').hide()
-  $('#upload-form-div').show()
-}
-
-const hideUploadForm = function () {
-  $('#upload-form-div').hide()
-  $('#home-page').show()
 }
 
 const uploadFileSuccess = function () {
@@ -179,12 +163,11 @@ module.exports = {
   changePasswordCancel,
   signOutSuccess,
   signOutFailure,
-  showUploadForm,
-  hideUploadForm,
   uploadFileSuccess,
   uploadFileFailure,
   viewFilesSuccess,
   viewFilesFailure,
   deleteFileSuccess,
-  deleteFileFailure
+  deleteFileFailure,
+  clearForm
 }

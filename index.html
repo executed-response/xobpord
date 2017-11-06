@@ -31,9 +31,19 @@
       </nav>
 
       <div class="active-after-signin" id="home-page" style="display: none;">
-        <button class="btn btn-primary p-2 m-2" id="show-upload-form">New Upload</button>
-        <div id="upload-table-container">
+        <!-- upload form -->
+        <div class="row justify-content-center mt-1" id="upload-form-div">
+          <div class="col-12 col-md-8 col-xl-6">
+            <form class="mb-1" id="upload-form">
+              <div class="form-group">
+                <input type="file" class="form-control" id="file" name="file" multiple required>
+              </div>
+              <button type="submit" class="btn btn-primary" name="submit">Upload File</button>
+            </form>
+          </div>
         </div>
+        <br>
+        <div id="upload-table-container"></div>
       </div>
 
       <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -117,33 +127,6 @@
               </div>
               <button type="submit" class="btn btn-primary" name="submit">Change Password</button>
               <button type="button" class="btn btn-secondary" id="change-password-cancel" name="cancel">Cancel</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- upload form -->
-        <div class="row justify-content-center mt-1" id="upload-form-div" style="display: none;">
-          <div class="col-12 col-md-8 col-xl-6">
-            <form class="mb-1" id="upload-form">
-              <h3>Upload New File</h3>
-              <div class="form-group">
-                <label for="file-name">File Name</label>
-                <input type="text" class="form-control" id="file-name" name="filename" placeholder="File Name" required>
-              </div>
-              <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Description" required>
-              </div>
-              <div class="form-group">
-                <label for="tags">Tags</label>
-                <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags">
-              </div>
-              <div class="form-group">
-                <label for="file">Upload File</label>
-                <input type="file" class="form-control" id="file" name="file" required>
-              </div>
-              <button type="submit" class="btn btn-primary" name="submit">Upload File</button>
-              <button type="button" class="btn btn-secondary" id="upload-form-cancel" name="cancel">Cancel</button>
             </form>
           </div>
         </div>
