@@ -83,6 +83,17 @@ const viewFile = function (id) {
   })
 }
 
+const updateFile = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + 'uploads/' + store.uploadId,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
 module.exports = {
   signIn,
   signUp,
@@ -91,5 +102,6 @@ module.exports = {
   uploadFile,
   viewFiles,
   deleteFile,
-  viewFile
+  viewFile,
+  updateFile
 }
