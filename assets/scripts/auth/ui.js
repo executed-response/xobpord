@@ -71,7 +71,6 @@ const uploadFileFailure = function () {
 
 const viewFilesSuccess = function (files) {
   $('#upload-table-container').empty()
-  console.log(files)
   $('#upload-table-container').append(uploadsTableHandlebar(files))
 }
 
