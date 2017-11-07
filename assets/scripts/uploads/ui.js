@@ -6,6 +6,7 @@ const greenNotification = require('../shared/ui').greenNotification
 const redNotification = require('../shared/ui').redNotification
 
 const uploadFileSuccess = function () {
+  $('#file').val('')
   greenNotification('Uploaded file successfully')
 }
 
