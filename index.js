@@ -4,9 +4,11 @@
 // var example = require('./example');
 
 // load manifests
-
+require('jquery-tags-input/dist/jquery.tagsinput.min.css')
+require('jquery-tags-input/dist/jquery.tagsinput.min.js')
 window.Popper = require('popper.js')
 require('bootstrap')
+require('bootstrap-notify')
 
 // scripts
 require('./assets/scripts/index.js')
