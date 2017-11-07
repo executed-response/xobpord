@@ -71,6 +71,7 @@ const uploadFileFailure = function () {
 
 const viewFilesSuccess = function (files) {
   $('#upload-table-container').empty()
+  console.log(files)
   $('#upload-table-container').append(uploadsTableHandlebar(files))
 }
 
@@ -96,7 +97,6 @@ const viewFileSuccess = function (response) {
   store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
-
   $('#view-file-div').show()
   if (response.upload._owner !== store.user.id) {
     $('#filename').prop('readonly', true)
