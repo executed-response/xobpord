@@ -24,7 +24,6 @@ const clearFormOnHide = function (id, formId) {
 }
 
 const registerObservers = function () {
-  clearFormOnHide('#change-password-div', '#change-password')
   clearFormOnHide('#sign-in-div', '#sign-in')
   clearFormOnHide('#sign-up-div', '#sign-up')
   clearFormOnHide('#view-file-div', '#view-file')

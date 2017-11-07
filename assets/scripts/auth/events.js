@@ -109,7 +109,10 @@ const addHandlers = function () {
   $('#new-user').on('click', ui.newUser)
   $('#new-user-cancel').on('click', onSignUpCancel)
   $('#sign-up').on('submit', onSignUp)
-  $('#change-password-form').on('click', ui.changePasswordForm)
+  $('#changePasswordModal').on('hidden.bs.modal', (event) => $('#change-password').get(0).reset())
+  $('#change-password-form').on('click', function () {
+    $('#changePasswordModal').modal('show')
+  })
   $('#change-password-cancel').on('click', onChangePasswordCancel)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)

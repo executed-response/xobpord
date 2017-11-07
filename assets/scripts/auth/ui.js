@@ -39,24 +39,12 @@ const signUpFailure = function () {
 }
 
 const changePasswordSuccess = function () {
-  $('#change-password-div').hide()
-  $('#home-page').show()
+  $('#changePasswordModal').modal('hide')
   greenNotification('Password changed successfully')
 }
 
 const changePasswordFailure = function () {
   redNotification('Failed to change password')
-}
-
-const changePasswordForm = function () {
-  $('#home-page').hide()
-  $('#upload-form-div').hide()
-  $('#change-password-div').show()
-}
-
-const changePasswordCancel = function () {
-  $('#change-password-div').hide()
-  $('#home-page').show()
 }
 
 const signOutSuccess = function () {
@@ -197,8 +185,6 @@ module.exports = {
   signUpFailure,
   changePasswordSuccess,
   changePasswordFailure,
-  changePasswordForm,
-  changePasswordCancel,
   signOutSuccess,
   signOutFailure,
   uploadFileSuccess,
