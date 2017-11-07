@@ -28,11 +28,6 @@ const onSignUp = function (event) {
     .catch(ui.signUpFailure)
 }
 
-const onChangePasswordCancel = function (event) {
-  event.preventDefault()
-  ui.changePasswordCancel()
-}
-
 const onChangePassword = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
@@ -56,7 +51,6 @@ const addHandlers = function () {
   $('#change-password-form').on('click', function () {
     $('#changePasswordModal').modal('show')
   })
-  $('#change-password-cancel').on('click', onChangePasswordCancel)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
 }
