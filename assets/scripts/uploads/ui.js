@@ -1,5 +1,7 @@
 'use strict'
 
+const filesize = require('filesize')
+const moment = require('moment')
 const store = require('../store.js')
 const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 const greenNotification = require('../shared/ui').greenNotification
@@ -15,6 +17,10 @@ const uploadFileFailure = function () {
 }
 
 const viewFilesSuccess = function (files) {
+  files.uploads.forEach(file => {
+    file._filesize = filesize(file._filesize)
+    file.updatedAt = moment(file.updatedAt).format('lll')
+  })
   $('#upload-table-container').empty()
   $('#upload-table-container').append(uploadsTableHandlebar(files))
 }

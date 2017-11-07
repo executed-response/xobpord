@@ -3,17 +3,17 @@
     <thead>
       <tr>
         <th>Filename</th>
-        <th>Description</th>
-        <th>Tags</th>
+        <th>Last modified</th>
+        <th>File size</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       {{#each uploads as |upload| }}
       <tr class='clickable-row' style="cursor: pointer" id="{{upload._id}}">
-        <td>{{upload.filename}}</td>
-        <td>{{upload.description}}</td>
-        <td>{{upload.tags}}</td>
+        <td class="text-left">{{upload.filename}}</td>
+        <td>{{upload.updatedAt}}</td>
+        <td>{{upload._filesize}}</td>
         <td>
           <a class="nav-link btn btn-danger p-2 m-2 delete-file-btn" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal">Delete</a>
         </td>
