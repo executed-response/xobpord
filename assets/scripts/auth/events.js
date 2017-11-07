@@ -104,6 +104,11 @@ const onUpdateFile = function (event) {
     .catch(ui.updateFileFailure)
 }
 
+const onFileLookup = function (event) {
+  event.preventDefault()
+  onViewFile($('#file-lookup-id').val())
+}
+
 const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#new-user').on('click', ui.newUser)
@@ -122,6 +127,7 @@ const addHandlers = function () {
   $('#view-back-button').on('click', ui.showHomePage)
   $('#view-file').on('submit', onUpdateFile)
   $('#tags').tagsInput()
+  $('#file-lookup').on('click', onFileLookup)
 }
 
 module.exports = {

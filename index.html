@@ -33,7 +33,7 @@
       <div class="active-after-signin" id="home-page" style="display: none;">
         <!-- upload form -->
         <div class="row justify-content-center mt-1" id="upload-form-div">
-          <div class="col-12 col-md-8 col-xl-6">
+          <div class="col-6">
             <form class="mb-1" id="upload-form">
               <div class="form-group">
                 <input type="file" class="form-control" id="file" name="file" multiple required>
@@ -41,8 +41,15 @@
               <button type="submit" class="btn btn-primary" name="submit">Upload File</button>
             </form>
           </div>
+          <div class="col-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="file-lookup-id" placeholder="Search for..." aria-label="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" id="file-lookup" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
         </div>
-        <br>
         <div id="upload-table-container"></div>
       </div>
 
@@ -152,6 +159,8 @@
             </div>
             <form class="mb-1" id="view-file">
               <h3>Your File</h3>
+                <label for="file-id">File ID: </label>
+                <span id="file-id"></span>
               <div class="form-group">
                 <label for="filename">Filename</label>
                 <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" required>

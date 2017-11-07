@@ -97,6 +97,20 @@ const viewFileSuccess = function (response) {
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#view-file-div').show()
+  if (response.upload._owner !== store.user.id) {
+    $('#filename').prop('readonly', true)
+    $('#description').prop('readonly', true)
+    $('#tags_tag').prop('readonly', true)
+    $('#view-delete-button').hide()
+    $('#view-save-button').hide()
+  } else {
+    $('#filename').prop('readonly', false)
+    $('#description').prop('readonly', false)
+    $('#tags_tag').prop('readonly', false)
+    $('#view-delete-button').show()
+    $('#view-save-button').show()
+  }
+  $('#file-id').text(response.upload._id)
   $('#filename').val(response.upload.filename)
   $('#description').val(response.upload.description)
   $('#tags').val(response.upload.tags)
