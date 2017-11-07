@@ -87,7 +87,6 @@ const deleteFileSuccess = function () {
 }
 
 const deleteFileFailure = function () {
-  store.uploadId = null // delete this line of code since if a user retries and the server is up again it won't work?
   $('#confirmDeleteModal').modal('hide')
   redNotification('Failed to delete file')
 }
