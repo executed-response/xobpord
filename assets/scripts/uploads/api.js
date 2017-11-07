@@ -39,10 +39,7 @@ const deleteFile = function () {
 const viewFile = function (id) {
   return $.ajax({
     url: config.apiOrigin + 'uploads/' + id,
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
+    method: 'GET'
   })
 }
 
