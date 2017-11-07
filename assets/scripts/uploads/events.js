@@ -5,6 +5,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
+const sharedUi = require('../shared/ui')
 
 const onUploadFile = function (event) {
   event.preventDefault()
@@ -63,13 +64,19 @@ const onUpdateFile = function (event) {
     .catch(ui.updateFileFailure)
 }
 
+const onFileLookup = function (event) {
+  event.preventDefault()
+  onViewFile($('#file-lookup-id').val())
+}
+
 const addHandlers = function () {
   $('#upload-form').on('submit', onUploadFile)
   $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
   $('#view-delete-button').on('click', onViewDelete)
-  $('#view-back-button').on('click', ui.showHomePage)
+  $('#view-back-button').on('click', sharedUi.showHomePage)
   $('#view-file').on('submit', onUpdateFile)
   $('#tags').tagsInput()
+  $('#file-lookup').on('click', onFileLookup)
 }
 
 module.exports = {
