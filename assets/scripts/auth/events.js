@@ -118,6 +118,7 @@ const addHandlers = function () {
   $('#view-delete-button').on('click', onViewDelete)
   $('#view-back-button').on('click', ui.showHomePage)
   $('#view-file').on('submit', onUpdateFile)
+  $('#tags').tagsInput()
 }
 
 module.exports = {
