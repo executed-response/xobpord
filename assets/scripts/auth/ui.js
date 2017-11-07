@@ -96,6 +96,7 @@ const viewFileSuccess = function (response) {
   store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
+
   $('#view-file-div').show()
   if (response.upload._owner !== store.user.id) {
     $('#filename').prop('readonly', true)
@@ -113,7 +114,9 @@ const viewFileSuccess = function (response) {
   $('#file-id').text(response.upload._id)
   $('#filename').val(response.upload.filename)
   $('#description').val(response.upload.description)
-  $('#tags').val(response.upload.tags)
+  if (response.upload.tags) {
+    $('#tags').importTags(response.upload.tags)
+  }
   $('#view-download-button').attr('href', response.upload._url)
 }
 
