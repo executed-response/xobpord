@@ -67,6 +67,7 @@ const onUpdateFile = function (event) {
 const onFileLookup = function (event) {
   event.preventDefault()
   onViewFile($('#file-lookup-id').val())
+  $('#file-lookup-id').val('')
 }
 
 const addHandlers = function () {
