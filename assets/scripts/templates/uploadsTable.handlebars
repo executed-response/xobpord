@@ -11,7 +11,7 @@
     <tbody>
       {{#each uploads as |upload| }}
       <tr class='clickable-row' style="cursor: pointer" id="{{upload._id}}">
-        <td>{{upload.filename}}</td>
+        <td class="text-left">{{upload.filename}}</td>
         <td>{{upload.updatedAt}}</td>
         <td>{{upload._filesize}}</td>
         <td>
