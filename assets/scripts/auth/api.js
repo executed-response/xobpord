@@ -40,68 +40,9 @@ const signOut = function () {
   })
 }
 
-const uploadFile = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + 'uploads',
-    method: 'POST',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    },
-    data,
-    contentType: false,
-    processData: false
-  })
-}
-
-const viewFiles = function () {
-  return $.ajax({
-    url: config.apiOrigin + 'uploads',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
-
-const deleteFile = function () {
-  return $.ajax({
-    url: config.apiOrigin + 'uploads/' + store.uploadId,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
-
-const viewFile = function (id) {
-  return $.ajax({
-    url: config.apiOrigin + 'uploads/' + id,
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
-
-const updateFile = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + 'uploads/' + store.uploadId,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    },
-    data
-  })
-}
-
 module.exports = {
   signIn,
   signUp,
   changePassword,
-  signOut,
-  uploadFile,
-  viewFiles,
-  deleteFile,
-  viewFile,
-  updateFile
+  signOut
 }
