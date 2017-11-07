@@ -1,0 +1,19 @@
+<div class="row justify-content-left mt-2 ml-3">
+  <div class="col-12 col-md-8 col-xl-6">
+    <div class='d-flex'>
+      <a href="#" id="to-main-site" class="btn btn-secondary mx-1 p-2">To Main Site</a>
+      <a href="{{upload._url}}" id="public-download-button" class="btn btn-primary mx-1 p-2">Download</a>
+    </div>
+      <h3>{{upload.filename}}</h3>
+        <label class="font-weight-bold" for="file-id">File ID: </label>
+        <span>{{upload._id}}</span>
+      <div>
+        <label class="font-weight-bold" for="description">Description: </label>
+        <span>{{upload.description}}</span>
+      </div>
+      <div>
+        <label class="font-weight-bold" for="tags">Tags:</label>
+        <div id="tag_container"></div>
+      </div>
+  </div>
+</div>
