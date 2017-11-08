@@ -41,10 +41,27 @@ const clearHomeOnHide = function (id) {
   observer.observe(target, config)
 }
 
+const showBackgroundBeforeSignIn = function (id) {
+  const target = $(id).get(0)
+
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.target.style.display === '') {
+        $('body').addClass('background')
+      }
+    })
+  })
+
+  const config = { attributes: true, childList: true, characterData: true, attributeFilter: ['style'] }
+
+  observer.observe(target, config)
+}
+
 const registerObservers = function () {
   clearFormOnHide('#sign-in-div', '#sign-in')
   clearFormOnHide('#sign-up-div', '#sign-up')
   clearHomeOnHide('#home-page')
+  showBackgroundBeforeSignIn('#sign-in-div')
 }
 
 module.exports = {
