@@ -10,12 +10,16 @@
     </thead>
     <tbody>
       {{#each uploads as |upload| }}
-      <tr class='clickable-row' style="cursor: pointer" id="{{upload._id}}">
+      <tr id="{{upload._id}}">
         <td class="text-left">{{upload.filename}}</td>
         <td>{{upload.updatedAt}}</td>
         <td>{{upload._filesize}}</td>
         <td>
-          <a class="nav-link btn btn-danger p-2 m-2 delete-file-btn" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal">Delete</a>
+          <div class="btn-group-lg" role="group" aria-label="Action buttons">
+            <button type="button" class="fa fa-pencil fa-5 p-2 btn-primary home-edit-button" aria-hidden="true" data-id="{{ upload._id }}"></button>
+            <a href={{ upload._url }}><button type="button" class="fa fa-download fa-5 p-2 btn-info home-download-button" data-id="{{ upload._id }}"></button></a>
+            <button type="button" class="fa fa-trash fa-5 p-2 btn-danger home-delete-button" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal"></button>
+          </div>
         </td>
       </tr>
       {{/each}}
