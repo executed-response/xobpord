@@ -27,6 +27,20 @@
         <a href={{ upload._url }}><button id="view-download-button" type="button" class="fa fa-download fa-2x p-2 btn-info" data-id="{{ upload._id }}"></button></a>
         <button id="view-save-button" type="submit" name="submit" class="fa fa-floppy-o fa-2x p-2 btn-success" aria-hidden="true" data-id="{{ upload._id }}"></button>
       </div>
+      <!-- radio buttons for private/public switching -->
+      <label for="file-privacy">File sharing options</label>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="upload[private]" id="file-private" value="true" checked>
+          Private
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="radio" name="upload[private]" id="file-public" value="false">
+          Anyone with the link
+        </label>
+      </div>
     </form>
       <div class="input-group card-body text-center" aria-label="File sharing link">
         <span class="input-group-addon"><i class="fa fa-share"></i></span>
