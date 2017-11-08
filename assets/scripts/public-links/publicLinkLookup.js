@@ -22,12 +22,13 @@ const isFileToLoad = function () {
   }
 }
 
-window.onload = function () {
+const parseWebParameters = function () {
   const id = getParameterByName('id')
   store.publicFileId = id
 }
 
 module.exports = {
+  parseWebParameters,
   isFileToLoad,
   loadFile
 }
