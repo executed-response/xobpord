@@ -181,6 +181,22 @@
               <div class='d-flex'>
                 <button id="view-save-button" type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
               </div>
+
+              <div>
+                <label for="sharing-link">File sharing link</label>
+                <br>
+                <div class=input-group>
+                  <!-- Target -->
+                  <input type=-"text" class="form-control" id="sharing-link" value="" readonly>
+                  <!-- Trigger -->
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">
+                        Copy
+                    </button>
+                  </span>
+                </div>
+              </div>
+
             </form>
           </div>
         </div>
