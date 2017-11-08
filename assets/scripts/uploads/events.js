@@ -29,7 +29,6 @@ const onViewFiles = function () {
       $('.home-preview-button').on('click', (event) => {
         $('.lightgallery').lightGallery()
         const photoId = '[data-photo-id=' + '"' + $(event.target).attr('data-id') + '"' + ']'
-        console.log($(photoId).get(0))
         $(photoId).click()
       })
     })

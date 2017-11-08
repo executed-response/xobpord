@@ -59,9 +59,9 @@ const viewFileSuccess = function (response) {
   $('#fileView').empty()
   if (response.upload._owner === store.user.id) {
     $('#fileView').append(editFileHandlebars(response))
-    $('#tags').tagsInput()
+    $('.my-tags').tagsInput()
     if (response.upload.tags) {
-      $('#tags').importTags(response.upload.tags)
+      $('.my-tags').importTags(response.upload.tags)
     }
   } else {
     $('#fileView').append(readOnlyFileHandlebars(response))
