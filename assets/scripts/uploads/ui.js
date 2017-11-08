@@ -2,12 +2,13 @@
 
 const filesize = require('filesize')
 const moment = require('moment')
-const Clipboard = require('clipboard/dist/clipboard.min.js')
 const config = require('../config.js')
 const store = require('../store.js')
 const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 const greenNotification = require('../shared/ui').greenNotification
 const redNotification = require('../shared/ui').redNotification
+const editFileHandlebars = require('../templates/editFile.handlebars')
+const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
 
 const uploadFileSuccess = function () {
   $('#file').val('')
@@ -34,7 +35,7 @@ const viewFilesFailure = function () {
 const deleteFileSuccess = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
-  $('#view-file-div').hide()
+  $('#fileView').hide()
   $('#home-page').show()
   greenNotification('File deleted')
 }
@@ -48,38 +49,23 @@ const viewFileSuccess = function (response) {
   store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
-  $('#view-file-div').show()
-  if (response.upload._owner !== store.user.id) {
-    $('#filename').prop('readonly', true)
-    $('#description').prop('readonly', true)
-    $('#tags_tag').prop('readonly', true)
-    $('#view-delete-button').hide()
-    $('#view-save-button').hide()
+  $('#fileView').empty()
+  if (response.upload._owner === store.user.id) {
+    $('#fileView').append(editFileHandlebars(response))
+    $('#tags').tagsInput()
+    if (response.upload.tags) {
+      $('#tags').importTags(response.upload.tags)
+    }
   } else {
-    $('#filename').prop('readonly', false)
-    $('#description').prop('readonly', false)
-    $('#tags_tag').prop('readonly', false)
-    $('#view-delete-button').show()
-    $('#view-save-button').show()
+    $('#fileView').append(readOnlyFileHandlebars(response))
   }
-  $('#file-id').text(response.upload._id)
-  $('#filename').val(response.upload.filename)
-  $('#description').val(response.upload.description)
-  if (response.upload.tags) {
-    $('#tags').importTags(response.upload.tags)
-  }
-  $('#view-download-button').attr('href', response.upload._url)
+  $('#fileView').show()
   $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
-
-  const clip = new Clipboard('#sharing-link-button')
-  clip.on('success', function (e) {
-    greenNotification('Link copied to clipboard')
-  })
 }
 
 const updateFileSuccess = function () {
   store.uploadId = null
-  $('#view-file-div').hide()
+  $('#fileView').hide()
   $('#home-page').show()
   greenNotification('File updated')
 }

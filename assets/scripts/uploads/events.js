@@ -1,6 +1,7 @@
 'use strict'
 
 const getFormFields = require(`../../../lib/get-form-fields`)
+const Clipboard = require('clipboard/dist/clipboard.min.js')
 
 const api = require('./api')
 const ui = require('./ui')
@@ -45,6 +46,11 @@ const onDeleteFileConfirm = function () {
 const onViewFile = function (id) {
   api.viewFile(id)
     .then(ui.viewFileSuccess)
+    .then(() => {
+      $('#view-delete-button').on('click', onViewDelete)
+      $('#view-back-button').on('click', sharedUi.showHomePage)
+      $('#view-file').on('submit', onUpdateFile)
+    })
     .catch(ui.viewFileFailure)
 }
 
@@ -68,14 +74,18 @@ const onFileLookup = function (event) {
   $('#file-lookup-id').val('')
 }
 
+const copyLink = function (event) {
+  const clip = new Clipboard('#sharing-link-button')
+  clip.on('success', function () {
+    sharedUi.greenNotification('Link copied to clipboard')
+  })
+}
+
 const addHandlers = function () {
   $('#upload-form').on('submit', onUploadFile)
   $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
-  $('#view-delete-button').on('click', onViewDelete)
-  $('#view-back-button').on('click', sharedUi.showHomePage)
-  $('#view-file').on('submit', onUpdateFile)
-  $('#tags').tagsInput()
   $('#file-lookup').on('click', onFileLookup)
+  copyLink()
 }
 
 module.exports = {

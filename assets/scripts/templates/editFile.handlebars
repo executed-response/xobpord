@@ -1,0 +1,40 @@
+<div class="row justify-content-center mt-1">
+  <div class="col-12 col-md-8 col-xl-6">
+    <div class='d-flex'>
+      <button id="view-back-button" type="button" class="btn btn-secondary mr-auto p-2">Back</button>
+      <button id="view-delete-button" type="button" class="btn btn-danger mx-1 p-2">Delete</button>
+      <a href="{{upload._url}}" id="view-download-button" class="btn btn-primary mx-1 p-2">Download</a>
+    </div>
+    <form class="mb-1" id="view-file">
+      <h3>Your File</h3>
+      <label for="file-id">File ID: </label>
+      <span>{{upload._id}}</span>
+      <div class="form-group">
+        <label for="filename">Filename</label>
+        <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" value="{{upload.filename}}" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea rows="4" cols="50" class="form-control" id="description" name="upload[description]" placeholder="Description">{{upload.description}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="text" class="tags form-control" id="tags" name="upload[tags]">
+        <span><i>Use a comma to separate tags</i></span>
+      </div>
+      <div class='d-flex'>
+        <button id="view-save-button" type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
+      </div>
+    </form>
+    <div>
+      <label for="sharing-link">File sharing link</label>
+      <br>
+      <div class=input-group>
+        <input type="text" class="form-control" id="sharing-link" value="" readonly>
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
