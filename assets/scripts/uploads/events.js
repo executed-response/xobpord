@@ -19,15 +19,19 @@ const onUploadFile = function (event) {
 const onViewFiles = function () {
   return api.viewFiles()
     .then(ui.viewFilesSuccess)
-    .then(function () {
-      $('.clickable-row').on('click', onRowClick)
-      $('.delete-file-btn').on('click', onDeleteFile)
+    .then((response) => {
+      $('.home-edit-button').on('click', (event) => {
+        event.preventDefault()
+        onViewFile($(event.target).attr('data-id'))
+      })
+      $('.home-download-button').on('click', () => {
+      })
+      $('.home-delete-button').on('click', onDeleteFile)
     })
     .catch(ui.viewFilesFailure)
 }
 
 const onDeleteFile = function (event) {
-  event.stopPropagation()
   const uploadId = event.target.getAttribute('data-id')
   store.uploadId = uploadId
   ui.showDeleteModal()
@@ -38,10 +42,6 @@ const onDeleteFileConfirm = function () {
     .then(ui.deleteFileSuccess)
     .then(onViewFiles)
     .catch(ui.deleteFileFailure)
-}
-
-const onRowClick = function (event) {
-  onViewFile(event.target.parentNode.id)
 }
 
 const onViewFile = function (id) {
