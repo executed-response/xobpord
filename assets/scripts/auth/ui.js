@@ -9,6 +9,7 @@ const signInSuccess = function (data) {
   $('.active-after-signin').show()
   store.user = data.user
   greenNotification('Signed in successfully')
+  $('body').removeClass('background')
 }
 
 const signInFailure = function () {
