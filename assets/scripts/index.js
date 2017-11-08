@@ -19,11 +19,10 @@ $(() => {
 })
 
 $(() => {
-  setTimeout(() => { // This is because it would randomly start running this before the refresh finished
-    if (publicLinkLookup.isFileToLoad()) {
-      publicLinkLookup.loadFile()
-    } else {
-      $('#sign-in-div').show()
-    }
-  }, 100)
+  publicLinkLookup.parseWebParameters()
+  if (publicLinkLookup.isFileToLoad()) {
+    publicLinkLookup.loadFile()
+  } else {
+    $('#sign-in-div').show()
+  }
 })
