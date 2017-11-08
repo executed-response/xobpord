@@ -7,6 +7,12 @@ const config = require('../config')
 const onViewPublicFileSuccess = function (response) {
   $('#publicView').empty()
   $('#publicView').append(publicFileViewHandlebar(response))
+  response.upload.displayType = 'display: none;'
+  const splitUrl = response.upload._url.split('.')
+  const ext = splitUrl[splitUrl.length - 1]
+  if (ext === 'jpg' || ext === 'png') {
+    response.upload.displayType = 'display: inline-block;'
+  }
   if (response.upload.tags) {
     const tags = { tags: response.upload.tags.split(',') }
     $('#tag_container').append(tagHandlebar(tags))

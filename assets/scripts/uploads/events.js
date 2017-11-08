@@ -26,6 +26,11 @@ const onViewFiles = function () {
         onViewFile($(event.target).attr('data-id'))
       })
       $('.home-delete-button').on('click', onDeleteFile)
+      $('.home-preview-button').on('click', (event) => {
+        $('.lightgallery').lightGallery()
+        const photoId = '[data-photo-id=' + '"' + $(event.target).attr('data-id') + '"' + ']'
+        $(photoId).click()
+      })
     })
     .catch(ui.viewFilesFailure)
 }
