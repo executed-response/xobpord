@@ -16,7 +16,7 @@
     <body class="container-fluid px-0">
 
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <span class="navbar-brand">Xobpord</span>
+        <span class="navbar-brand"><img src="/favicon.ico" style="width: 32px; height: 32px;">Xobpord</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <div class="navbar-toggler-icon"></div>
         </button>
@@ -41,13 +41,19 @@
       <div class="active-after-signin" id="home-page" style="display: none;">
         <!-- upload form -->
         <div class="row justify-content-center mt-1" id="upload-form-div">
-          <div class="col-6">
+          <div class="col-12">
             <form class="mb-1" id="upload-form">
-              <div class="form-group">
-                <input type="file" class="form-control" id="file" name="file" multiple required>
-              </div>
-              <button type="submit" class="btn btn-primary" name="submit">Upload File</button>
-            </form>
+              <div class="input-group">
+                 <span class="input-group-btn">
+                     <button type="button" class="btn btn-primary btn-file" id="browseFileButton">Browse&hellip;</button>
+                     <input type="file" name="file" id="fileSelectorInput" style="position:absolute; top:-100px;" multiple>
+                 </span>
+                 <input type="text" id="uploadFileTextDisplay" value="Select files to upload" class="form-control" readonly>
+                 <span class="input-group-btn">
+                   <button type="submit" class="btn btn-primary" name="submit">Upload</button>
+                 </span>
+             </div>
+           </form>
           </div>
           <div class="col-6">
             <div class="input-group">

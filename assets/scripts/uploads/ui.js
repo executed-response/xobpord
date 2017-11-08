@@ -9,9 +9,11 @@ const greenNotification = require('../shared/ui').greenNotification
 const redNotification = require('../shared/ui').redNotification
 const editFileHandlebars = require('../templates/editFile.handlebars')
 const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
+const tagHandlebar = require('../templates/tag.handlebars')
 
 const uploadFileSuccess = function () {
-  $('#file').val('')
+  $('#uploadFileTextDisplay').val('Select files to upload')
+  $('#fileSelectorInput').val('')
   greenNotification('Uploaded file successfully')
 }
 
@@ -23,6 +25,12 @@ const viewFilesSuccess = function (files) {
   files.uploads.forEach(file => {
     file._filesize = filesize(file._filesize)
     file.updatedAt = moment(file.updatedAt).format('lll')
+    file.displayType = 'display: none;'
+    const splitUrl = file._url.split('.')
+    const ext = splitUrl[splitUrl.length - 1]
+    if (ext === 'jpg' || ext === 'png') {
+      file.displayType = 'display: inline-block;'
+    }
   })
   $('#upload-table-container').empty()
   $('#upload-table-container').append(uploadsTableHandlebar(files))
@@ -50,15 +58,26 @@ const viewFileSuccess = function (response) {
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#fileView').empty()
+  response.upload.displayType = 'display: none;'
+  const splitUrl = response.upload._url.split('.')
+  const ext = splitUrl[splitUrl.length - 1]
+  if (ext === 'jpg' || ext === 'png') {
+    response.upload.displayType = 'display: inline-block;'
+  }
   if (response.upload._owner === store.user.id) {
     $('#fileView').append(editFileHandlebars(response))
-    $('#tags').tagsInput()
+    $('.my-tags').tagsInput()
     if (response.upload.tags) {
-      $('#tags').importTags(response.upload.tags)
+      $('.my-tags').importTags(response.upload.tags)
     }
   } else {
     $('#fileView').append(readOnlyFileHandlebars(response))
+    if (response.upload.tags) {
+      const tags = { tags: response.upload.tags.split(',') }
+      $('#tag_container').append(tagHandlebar(tags))
+    }
   }
+  $('.lightgallery').lightGallery()
   $('#fileView').show()
   if (response.upload.private === true) {
     $('#file-public').prop('checked', false)

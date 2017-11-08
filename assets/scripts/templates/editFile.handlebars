@@ -1,29 +1,31 @@
-<div class="row justify-content-center mt-1">
-  <div class="col-12 col-md-8 col-xl-6">
-    <div class='d-flex'>
-      <button id="view-back-button" type="button" class="btn btn-secondary mr-auto p-2">Back</button>
-      <button id="view-delete-button" type="button" class="btn btn-danger mx-1 p-2">Delete</button>
-      <a href="{{upload._url}}" id="view-download-button" class="btn btn-primary mx-1 p-2">Download</a>
-    </div>
+<a id="view-back-button" class="mr-3" aria-hidden="true" data-id="{{ upload._id }}"><i style="color: cornflowerblue;" class="fa fa-arrow-left fa-2x m-2"></i></a>
+
+<div class="card justify-content-center mx-auto" style="width: 25rem;">
+  <div class="lightgallery" style="{{upload.displayType}}">
+    <a href="{{upload._url}}">
+        <img class="card-img-top" src="{{upload._url}}" alt="Could not preview file">
+    </a>
+  </div>
+  <div class="card-body">
     <form class="mb-1" id="view-file">
-      <h3>Your File</h3>
-      <label for="file-id">File ID: </label>
-      <span>{{upload._id}}</span>
-      <div class="form-group">
-        <label for="filename">Filename</label>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Filename:</strong>
         <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" value="{{upload.filename}}" required>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
+        </li>
+        <li class="list-group-item"><strong>Description:</strong>
         <textarea rows="4" cols="50" class="form-control" id="description" name="upload[description]" placeholder="Description">{{upload.description}}</textarea>
-      </div>
-      <div class="form-group">
-        <label for="tags">Tags</label>
-        <input type="text" class="tags form-control" id="tags" name="upload[tags]">
+        <li class="list-group-item"><strong>Tags:</strong>
+        <input type="text" class="my-tags tags form-control" name="upload[tags]">
         <span><i>Use a comma to separate tags</i></span>
-      </div>
-      <div class='d-flex'>
-        <button id="view-save-button" type="submit" class="btn btn-success ml-auto" name="submit">Save</button>
+        </li>
+        <li class="list-group-item"><strong>File ID:</strong>
+        <span>{{upload._id}}</span>
+        </li>
+      </ul>
+      <div class="card-body btn-group-lg text-center" role="group" aria-label="File sharing link">
+        <button id="view-delete-button" type="button" class="fa fa-trash fa-2x p-2 btn-danger" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal"></button>
+        <a href={{ upload._url }}><button id="view-download-button" type="button" class="fa fa-download fa-2x p-2 btn-info" data-id="{{ upload._id }}"></button></a>
+        <button id="view-save-button" type="submit" name="submit" class="fa fa-floppy-o fa-2x p-2 btn-success" aria-hidden="true" data-id="{{ upload._id }}"></button>
       </div>
       <!-- radio buttons for private/public switching -->
       <label for="file-privacy">File sharing options</label>
@@ -40,17 +42,15 @@
         </label>
       </div>
     </form>
-    <br>
-    <div>
-      <!-- file sharing link -->
-      <label for="sharing-link">File sharing link</label>
-      <br>
-      <div class=input-group>
+      <div class="input-group card-body text-center" aria-label="File sharing link">
+        <span class="input-group-addon"><i class="fa fa-share"></i></span>
         <input type="text" class="form-control" id="sharing-link" value="" readonly>
         <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
+          <button class="btn btn-primary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
         </span>
       </div>
+    </form>
+  </div>
     </div>
   </div>
 </div>

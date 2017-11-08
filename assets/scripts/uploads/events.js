@@ -26,6 +26,11 @@ const onViewFiles = function () {
         onViewFile($(event.target).attr('data-id'))
       })
       $('.home-delete-button').on('click', onDeleteFile)
+      $('.home-preview-button').on('click', (event) => {
+        $('.lightgallery').lightGallery()
+        const photoId = '[data-photo-id=' + '"' + $(event.target).attr('data-id') + '"' + ']'
+        $(photoId).click()
+      })
     })
     .catch(ui.viewFilesFailure)
 }
@@ -81,10 +86,35 @@ const copyLink = function (event) {
   })
 }
 
+const selectFilesToUpload = function (event) {
+  event.preventDefault()
+  $('#fileSelectorInput').click()
+}
+
+const filesSelectedToUpload = function (event) {
+  const input = $(this)
+  const numFiles = input.get(0).files ? input.get(0).files.length : 1
+  const label = input.val().replace(/\\/g, '/').replace(/.*\//, '')
+  input.trigger('fileselect', [numFiles, label])
+}
+
+const changeFilesSelected = function (event, numFiles, label) {
+  const input = $(this).parents('.input-group').find(':text')
+  const log = numFiles > 1 ? numFiles + ' files selected' : label
+  if (input.length) {
+    input.val(log)
+  } else {
+    input.val('')
+  }
+}
+
 const addHandlers = function () {
   $('#upload-form').on('submit', onUploadFile)
   $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
   $('#file-lookup').on('click', onFileLookup)
+  $('#browseFileButton').on('click', selectFilesToUpload)
+  $('#fileSelectorInput').on('change', filesSelectedToUpload)
+  $('#fileSelectorInput').on('fileselect', changeFilesSelected)
   copyLink()
 }
 
