@@ -1,6 +1,6 @@
-<a id="view-back-button" class="mr-3" aria-hidden="true" data-id="{{ upload._id }}"><i style="color: cornflowerblue;" class="fa fa-arrow-left fa-2x m-2"></i></a>
+<a id="view-back-button" class="mr-3" aria-hidden="true" data-id="{{ upload._id }}"><i style="color: #43a1f7;" class="fa fa-arrow-left fa-2x m-2"></i></a>
 
-<div class="card justify-content-center mx-auto" style="width: 25rem;">
+<div class="card justify-content-center mx-auto" style="width: 25rem; background-color: transparent;">
   <div class="lightgallery" style="{{upload.displayType}}">
     <a href="{{upload._url}}">
         <img class="card-img-top" src="{{upload._url}}">
@@ -9,15 +9,15 @@
   <div class="card-body">
     <form class="mb-1" id="view-file">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>Filename:</strong>
+        <li class="list-group-item" style="background-color: transparent;"><strong>Filename:</strong>
           <span>{{upload.filename}}</span>
         </li>
-        <li class="list-group-item"><strong>Description:</strong>
+        <li class="list-group-item" style="background-color: transparent;"><strong>Description:</strong>
           <span>{{upload.description}}</span>
-        <li class="list-group-item"><strong>Tags:</strong>
+        <li class="list-group-item" style="background-color: transparent;"><strong>Tags:</strong>
           <div id="tag_container"></div>
         </li>
-        <li class="list-group-item"><strong>File ID:</strong>
+        <li class="list-group-item" style="background-color: transparent;"><strong>File ID:</strong>
         <span>{{upload._id}}</span>
         </li>
       </ul>

@@ -1,0 +1,10 @@
+body {
+  background-attachment: fixed;
+  background-color: white;
+  background-image: url(https://i.imgur.com/soeF21d.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
