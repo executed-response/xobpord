@@ -2,6 +2,8 @@
 
 const filesize = require('filesize')
 const moment = require('moment')
+const Clipboard = require('clipboard/dist/clipboard.min.js')
+const config = require('../config.js')
 const store = require('../store.js')
 const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 const greenNotification = require('../shared/ui').greenNotification
@@ -67,6 +69,12 @@ const viewFileSuccess = function (response) {
     $('#tags').importTags(response.upload.tags)
   }
   $('#view-download-button').attr('href', response.upload._url)
+  $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
+
+  const clip = new Clipboard('#sharing-link-button')
+  clip.on('success', function (e) {
+    greenNotification('Link copied to clipboard')
+  })
 }
 
 const updateFileSuccess = function () {
