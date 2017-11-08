@@ -5,16 +5,16 @@
   <div class="card-body">
     <form class="mb-1" id="view-file">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>Filename</strong>
+        <li class="list-group-item"><strong>Filename:</strong>
         <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" value="{{upload.filename}}" required>
         </li>
-        <li class="list-group-item"><strong>Description</strong>
+        <li class="list-group-item"><strong>Description:</strong>
         <textarea rows="4" cols="50" class="form-control" id="description" name="upload[description]" placeholder="Description">{{upload.description}}</textarea>
-        <li class="list-group-item"><strong>Tags</strong>
+        <li class="list-group-item"><strong>Tags:</strong>
         <input type="text" class="my-tags tags form-control" name="upload[tags]">
         <span><i>Use a comma to separate tags</i></span>
         </li>
-        <li class="list-group-item"><strong>File ID</strong>
+        <li class="list-group-item"><strong>File ID:</strong>
         <span>{{upload._id}}</span>
         </li>
       </ul>
@@ -24,13 +24,11 @@
         <button id="view-save-button" type="submit" name="submit" class="fa fa-floppy-o fa-2x p-2 btn-success" aria-hidden="true" data-id="{{ upload._id }}"></button>
       </div>
     </form>
-    <div>
-      File sharing link:
-    </div>
       <div class="input-group card-body text-center" aria-label="File sharing link">
+        <span class="input-group-addon"><i class="fa fa-share"></i></span>
         <input type="text" class="form-control" id="sharing-link" value="" readonly>
         <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
+          <button class="btn btn-primary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
         </span>
       </div>
     </form>
