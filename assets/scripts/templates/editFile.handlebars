@@ -1,7 +1,11 @@
-<a id="view-back-button" class="mr-3" aria-hidden="true" data-id="{{ upload._id }}"><i style="color: cornflowerblue;" class="fa fa-arrow-left fa-3x m-2"></i></a>
+<a id="view-back-button" class="mr-3" aria-hidden="true" data-id="{{ upload._id }}"><i style="color: cornflowerblue;" class="fa fa-arrow-left fa-2x m-2"></i></a>
 
 <div class="card justify-content-center mx-auto" style="width: 25rem;">
-  <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+  <div class="lightgallery" style="{{upload.displayType}}">
+    <a href="{{upload._url}}">
+        <img class="card-img-top" src="{{upload._url}}" alt="Could not preview file">
+    </a>
+  </div>
   <div class="card-body">
     <form class="mb-1" id="view-file">
       <ul class="list-group list-group-flush">

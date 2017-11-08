@@ -57,6 +57,12 @@ const viewFileSuccess = function (response) {
   greenNotification('File viewed')
   $('#home-page').hide()
   $('#fileView').empty()
+  response.upload.displayType = 'display: none;'
+  const splitUrl = response.upload._url.split('.')
+  const ext = splitUrl[splitUrl.length - 1]
+  if (ext === 'jpg' || ext === 'png') {
+    response.upload.displayType = 'display: inline-block;'
+  }
   if (response.upload._owner === store.user.id) {
     $('#fileView').append(editFileHandlebars(response))
     $('.my-tags').tagsInput()
@@ -70,6 +76,7 @@ const viewFileSuccess = function (response) {
       $('#tag_container').append(tagHandlebar(tags))
     }
   }
+  $('.lightgallery').lightGallery()
   $('#fileView').show()
   $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
 }
