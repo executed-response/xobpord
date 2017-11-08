@@ -11,6 +11,9 @@ const getParameterByName = function (name) {
 }
 
 const loadFile = function () {
+  store.user = {
+    id: '0'
+  }
   events.onViewPublicFile(store.publicFileId)
 }
 
