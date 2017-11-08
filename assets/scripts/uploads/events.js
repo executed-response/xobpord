@@ -24,8 +24,6 @@ const onViewFiles = function () {
         event.preventDefault()
         onViewFile($(event.target).attr('data-id'))
       })
-      $('.home-download-button').on('click', () => {
-      })
       $('.home-delete-button').on('click', onDeleteFile)
     })
     .catch(ui.viewFilesFailure)
