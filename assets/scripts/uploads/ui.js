@@ -20,6 +20,9 @@ const uploadFileFailure = function () {
 }
 
 const viewFilesSuccess = function (files) {
+  files.uploads.sort(function (a, b) {
+    return new Date(b.updatedAt) - new Date(a.updatedAt)
+  })
   files.uploads.forEach(file => {
     file._filesize = filesize(file._filesize)
     file.updatedAt = moment(file.updatedAt).format('lll')
