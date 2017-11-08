@@ -9,6 +9,7 @@ require('jquery-tags-input/dist/jquery.tagsinput.min.js')
 window.Popper = require('popper.js')
 require('bootstrap')
 require('bootstrap-notify')
+require('lightgallery')
 
 // scripts
 require('./assets/scripts/index.js')

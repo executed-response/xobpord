@@ -6,8 +6,10 @@ const tagHandlebar = require('../templates/tag.handlebars')
 const onViewPublicFileSuccess = function (response) {
   $('#publicView').empty()
   $('#publicView').append(publicFileViewHandlebar(response))
-  const tags = { tags: response.upload.tags.split(',') }
-  $('#tag_container').append(tagHandlebar(tags))
+  if (response.upload.tags) {
+    const tags = { tags: response.upload.tags.split(',') }
+    $('#tag_container').append(tagHandlebar(tags))
+  }
   return response
 }
 
