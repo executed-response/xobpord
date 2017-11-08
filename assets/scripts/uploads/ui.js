@@ -24,6 +24,12 @@ const viewFilesSuccess = function (files) {
   files.uploads.forEach(file => {
     file._filesize = filesize(file._filesize)
     file.updatedAt = moment(file.updatedAt).format('lll')
+    file.displayType = 'display: none;'
+    const splitUrl = file._url.split('.')
+    const ext = splitUrl[splitUrl.length - 1]
+    if (ext === 'jpg' || ext === 'png') {
+      file.displayType = 'display: inline-block;'
+    }
   })
   $('#upload-table-container').empty()
   $('#upload-table-container').append(uploadsTableHandlebar(files))
