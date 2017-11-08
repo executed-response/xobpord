@@ -30,6 +30,8 @@ const clearHomeOnHide = function (id) {
     mutations.forEach(function (mutation) {
       if (mutation.target.style.display === 'none') {
         $('#file-lookup-id').val('')
+        $('#uploadFileTextDisplay').val('Select files to upload')
+        $('#fileSelectorInput').val('')
       }
     })
   })
@@ -39,13 +41,13 @@ const clearHomeOnHide = function (id) {
   observer.observe(target, config)
 }
 
-const clearTagsOnFileHide = function (id) {
+const showBackgroundBeforeSignIn = function (id) {
   const target = $(id).get(0)
 
   const observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
-      if (mutation.target.style.display === 'none') {
-        $('#tags_tagsinput').find('.tag').remove()
+      if (mutation.target.style.display === '') {
+        $('body').addClass('background')
       }
     })
   })
@@ -58,9 +60,8 @@ const clearTagsOnFileHide = function (id) {
 const registerObservers = function () {
   clearFormOnHide('#sign-in-div', '#sign-in')
   clearFormOnHide('#sign-up-div', '#sign-up')
-  clearFormOnHide('#view-file-div', '#view-file')
   clearHomeOnHide('#home-page')
-  clearTagsOnFileHide('#view-file-div')
+  showBackgroundBeforeSignIn('#sign-in-div')
 }
 
 module.exports = {

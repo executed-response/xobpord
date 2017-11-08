@@ -1,0 +1,41 @@
+<a href="#" id="to-main-site" class="mr-3" aria-hidden="true"><i style="color: #43a1f7;" class="fa fa-sign-in fa-2x m-2"></i>Sign In</a>
+
+<div class="card justify-content-center mx-auto" style="width: 25rem; background-color: #f3f6f9;">
+  <div class="lightgallery" style="{{upload.displayType}}">
+    <a href="{{upload._url}}">
+        <img class="card-img-top" src="{{upload._url}}">
+    </a>
+  </div>
+  <div class="card-body">
+    <form class="mb-1" id="view-file">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" style="background-color: #f3f6f9;"><strong>Filename:</strong>
+          <span>{{upload.filename}}</span>
+        </li>
+        <li class="list-group-item" style="background-color: #f3f6f9;"><strong>Description:</strong>
+          <span>{{upload.description}}</span>
+        <li class="list-group-item" style="background-color: #f3f6f9;"><strong>Tags:</strong>
+          <div id="tag_container"></div>
+        </li>
+        <li class="list-group-item" style="background-color: #f3f6f9;"><strong>File ID:</strong>
+        <span>{{upload._id}}</span>
+        </li>
+      </ul>
+      <div class="card-body btn-group-lg text-center" role="group" aria-label="File sharing link">
+        <button id="view-delete-button" type="button" class="fa fa-trash fa-2x p-2 btn-danger" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal"></button>
+        <a href={{ upload._url }}><button id="public-download-button" type="button" class="fa fa-download fa-2x p-2 btn-info" data-id="{{ upload._id }}"></button></a>
+        <button id="view-save-button" type="submit" name="submit" class="fa fa-floppy-o fa-2x p-2 btn-success" aria-hidden="true" data-id="{{ upload._id }}"></button>
+      </div>
+    </form>
+      <div class="input-group card-body text-center" aria-label="File sharing link">
+        <span class="input-group-addon"><i class="fa fa-share"></i></span>
+        <input type="text" class="form-control" id="sharing-link" value="" readonly>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="sharing-link-button" data-clipboard-target="#sharing-link">Copy</button>
+        </span>
+      </div>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>

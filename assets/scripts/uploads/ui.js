@@ -1,11 +1,19 @@
 'use strict'
 
+const filesize = require('filesize')
+const moment = require('moment')
+const config = require('../config.js')
 const store = require('../store.js')
 const uploadsTableHandlebar = require('../templates/uploadsTable.handlebars')
 const greenNotification = require('../shared/ui').greenNotification
 const redNotification = require('../shared/ui').redNotification
+const editFileHandlebars = require('../templates/editFile.handlebars')
+const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
+const tagHandlebar = require('../templates/tag.handlebars')
 
 const uploadFileSuccess = function () {
+  $('#uploadFileTextDisplay').val('Select files to upload')
+  $('#fileSelectorInput').val('')
   greenNotification('Uploaded file successfully')
 }
 
@@ -14,6 +22,19 @@ const uploadFileFailure = function () {
 }
 
 const viewFilesSuccess = function (files) {
+  files.uploads.sort(function (a, b) {
+    return new Date(b.updatedAt) - new Date(a.updatedAt)
+  })
+  files.uploads.forEach(file => {
+    file._filesize = filesize(file._filesize)
+    file.updatedAt = moment(file.updatedAt).format('lll')
+    file.displayType = 'display: none;'
+    const splitUrl = file._url.split('.')
+    const ext = splitUrl[splitUrl.length - 1]
+    if (ext === 'jpg' || ext === 'png') {
+      file.displayType = 'display: inline-block;'
+    }
+  })
   $('#upload-table-container').empty()
   $('#upload-table-container').append(uploadsTableHandlebar(files))
 }
@@ -25,7 +46,7 @@ const viewFilesFailure = function () {
 const deleteFileSuccess = function () {
   store.uploadId = null
   $('#confirmDeleteModal').modal('hide')
-  $('#view-file-div').hide()
+  $('#fileView').hide()
   $('#home-page').show()
   greenNotification('File deleted')
 }
@@ -39,32 +60,41 @@ const viewFileSuccess = function (response) {
   store.uploadId = response.upload._id
   greenNotification('File viewed')
   $('#home-page').hide()
-  $('#view-file-div').show()
-  if (response.upload._owner !== store.user.id) {
-    $('#filename').prop('readonly', true)
-    $('#description').prop('readonly', true)
-    $('#tags_tag').prop('readonly', true)
-    $('#view-delete-button').hide()
-    $('#view-save-button').hide()
+  $('#fileView').empty()
+  response.upload.displayType = 'display: none;'
+  const splitUrl = response.upload._url.split('.')
+  const ext = splitUrl[splitUrl.length - 1]
+  if (ext === 'jpg' || ext === 'png') {
+    response.upload.displayType = 'display: inline-block;'
+  }
+  if (response.upload._owner === store.user.id) {
+    $('#fileView').append(editFileHandlebars(response))
+    $('.my-tags').tagsInput()
+    if (response.upload.tags) {
+      $('.my-tags').importTags(response.upload.tags)
+    }
   } else {
-    $('#filename').prop('readonly', false)
-    $('#description').prop('readonly', false)
-    $('#tags_tag').prop('readonly', false)
-    $('#view-delete-button').show()
-    $('#view-save-button').show()
+    $('#fileView').append(readOnlyFileHandlebars(response))
+    if (response.upload.tags) {
+      const tags = { tags: response.upload.tags.split(',') }
+      $('#tag_container').append(tagHandlebar(tags))
+    }
   }
-  $('#file-id').text(response.upload._id)
-  $('#filename').val(response.upload.filename)
-  $('#description').val(response.upload.description)
-  if (response.upload.tags) {
-    $('#tags').importTags(response.upload.tags)
+  $('.lightgallery').lightGallery()
+  $('#fileView').show()
+  if (response.upload.private === true) {
+    $('#file-public').prop('checked', false)
+    $('#file-private').prop('checked', true)
+  } else {
+    $('#file-private').prop('checked', false)
+    $('#file-public').prop('checked', true)
   }
-  $('#view-download-button').attr('href', response.upload._url)
+  $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
 }
 
 const updateFileSuccess = function () {
   store.uploadId = null
-  $('#view-file-div').hide()
+  $('#fileView').hide()
   $('#home-page').show()
   greenNotification('File updated')
 }

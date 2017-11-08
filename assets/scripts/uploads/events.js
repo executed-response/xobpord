@@ -1,6 +1,7 @@
 'use strict'
 
 const getFormFields = require(`../../../lib/get-form-fields`)
+const Clipboard = require('clipboard/dist/clipboard.min.js')
 
 const api = require('./api')
 const ui = require('./ui')
@@ -19,15 +20,22 @@ const onUploadFile = function (event) {
 const onViewFiles = function () {
   return api.viewFiles()
     .then(ui.viewFilesSuccess)
-    .then(function () {
-      $('.clickable-row').on('click', onRowClick)
-      $('.delete-file-btn').on('click', onDeleteFile)
+    .then((response) => {
+      $('.home-edit-button').on('click', (event) => {
+        event.preventDefault()
+        onViewFile($(event.target).attr('data-id'))
+      })
+      $('.home-delete-button').on('click', onDeleteFile)
+      $('.home-preview-button').on('click', (event) => {
+        $('.lightgallery').lightGallery()
+        const photoId = '[data-photo-id=' + '"' + $(event.target).attr('data-id') + '"' + ']'
+        $(photoId).click()
+      })
     })
     .catch(ui.viewFilesFailure)
 }
 
 const onDeleteFile = function (event) {
-  event.stopPropagation()
   const uploadId = event.target.getAttribute('data-id')
   store.uploadId = uploadId
   ui.showDeleteModal()
@@ -40,13 +48,14 @@ const onDeleteFileConfirm = function () {
     .catch(ui.deleteFileFailure)
 }
 
-const onRowClick = function (event) {
-  onViewFile(event.target.parentNode.id)
-}
-
 const onViewFile = function (id) {
   api.viewFile(id)
     .then(ui.viewFileSuccess)
+    .then(() => {
+      $('#view-delete-button').on('click', onViewDelete)
+      $('#view-back-button').on('click', sharedUi.showHomePage)
+      $('#view-file').on('submit', onUpdateFile)
+    })
     .catch(ui.viewFileFailure)
 }
 
@@ -70,14 +79,43 @@ const onFileLookup = function (event) {
   $('#file-lookup-id').val('')
 }
 
+const copyLink = function (event) {
+  const clip = new Clipboard('#sharing-link-button')
+  clip.on('success', function () {
+    sharedUi.greenNotification('Link copied to clipboard')
+  })
+}
+
+const selectFilesToUpload = function (event) {
+  event.preventDefault()
+  $('#fileSelectorInput').click()
+}
+
+const filesSelectedToUpload = function (event) {
+  const input = $(this)
+  const numFiles = input.get(0).files ? input.get(0).files.length : 1
+  const label = input.val().replace(/\\/g, '/').replace(/.*\//, '')
+  input.trigger('fileselect', [numFiles, label])
+}
+
+const changeFilesSelected = function (event, numFiles, label) {
+  const input = $(this).parents('.input-group').find(':text')
+  const log = numFiles > 1 ? numFiles + ' files selected' : label
+  if (input.length) {
+    input.val(log)
+  } else {
+    input.val('')
+  }
+}
+
 const addHandlers = function () {
   $('#upload-form').on('submit', onUploadFile)
   $('#deleteUploadConfirm').on('click', onDeleteFileConfirm)
-  $('#view-delete-button').on('click', onViewDelete)
-  $('#view-back-button').on('click', sharedUi.showHomePage)
-  $('#view-file').on('submit', onUpdateFile)
-  $('#tags').tagsInput()
   $('#file-lookup').on('click', onFileLookup)
+  $('#browseFileButton').on('click', selectFilesToUpload)
+  $('#fileSelectorInput').on('change', filesSelectedToUpload)
+  $('#fileSelectorInput').on('fileselect', changeFilesSelected)
+  copyLink()
 }
 
 module.exports = {
