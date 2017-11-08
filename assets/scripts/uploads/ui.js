@@ -9,6 +9,7 @@ const greenNotification = require('../shared/ui').greenNotification
 const redNotification = require('../shared/ui').redNotification
 const editFileHandlebars = require('../templates/editFile.handlebars')
 const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
+const tagHandlebar = require('../templates/tag.handlebars')
 
 const uploadFileSuccess = function () {
   $('#file').val('')
@@ -58,6 +59,10 @@ const viewFileSuccess = function (response) {
     }
   } else {
     $('#fileView').append(readOnlyFileHandlebars(response))
+    if (response.upload.tags) {
+      const tags = { tags: response.upload.tags.split(',') }
+      $('#tag_container').append(tagHandlebar(tags))
+    }
   }
   $('#fileView').show()
   $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
