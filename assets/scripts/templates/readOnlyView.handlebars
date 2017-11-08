@@ -4,11 +4,6 @@
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
   <div class="card-body">
     <form class="mb-1" id="view-file">
-    <p class="card-text">
-      File ID:
-      <span>{{upload._id}}</span>
-    </p>
-      </li>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><strong>Filename</strong>
           <span>{{upload.filename}}</span>
@@ -17,6 +12,9 @@
           <span>{{upload.description}}</span>
         <li class="list-group-item"><strong>Tags</strong>
           <div id="tag_container"></div>
+        </li>
+        <li class="list-group-item"><strong>File ID</strong>
+        <span>{{upload._id}}</span>
         </li>
       </ul>
       <div class="card-body btn-group-lg text-center" role="group" aria-label="File sharing link">

@@ -4,11 +4,6 @@
   <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
   <div class="card-body">
     <form class="mb-1" id="view-file">
-    <p class="card-text">
-      File ID:
-      <span>{{upload._id}}</span>
-    </p>
-      </li>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><strong>Filename</strong>
         <input type="text" class="form-control" id="filename" name="upload[filename]" placeholder="Filename" value="{{upload.filename}}" required>
@@ -18,6 +13,9 @@
         <li class="list-group-item"><strong>Tags</strong>
         <input type="text" class="my-tags tags form-control" name="upload[tags]">
         <span><i>Use a comma to separate tags</i></span>
+        </li>
+        <li class="list-group-item"><strong>File ID</strong>
+        <span>{{upload._id}}</span>
         </li>
       </ul>
       <div class="card-body btn-group-lg text-center" role="group" aria-label="File sharing link">
