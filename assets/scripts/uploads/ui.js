@@ -60,6 +60,13 @@ const viewFileSuccess = function (response) {
     $('#fileView').append(readOnlyFileHandlebars(response))
   }
   $('#fileView').show()
+  if (response.upload.private === true) {
+    $('#file-public').prop('checked', false)
+    $('#file-private').prop('checked', true)
+  } else {
+    $('#file-private').prop('checked', false)
+    $('#file-public').prop('checked', true)
+  }
   $('#sharing-link').val(config.clientOrigin + '?id=' + response.upload._id)
 }
 
