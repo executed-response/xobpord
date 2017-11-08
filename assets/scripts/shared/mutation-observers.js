@@ -30,7 +30,8 @@ const clearHomeOnHide = function (id) {
     mutations.forEach(function (mutation) {
       if (mutation.target.style.display === 'none') {
         $('#file-lookup-id').val('')
-        $('#file').val('')
+        $('#uploadFileTextDisplay').val('Select files to upload')
+        $('#fileSelectorInput').val('')
       }
     })
   })

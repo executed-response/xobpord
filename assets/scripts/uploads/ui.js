@@ -11,7 +11,8 @@ const editFileHandlebars = require('../templates/editFile.handlebars')
 const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
 
 const uploadFileSuccess = function () {
-  $('#file').val('')
+  $('#uploadFileTextDisplay').val('Select files to upload')
+  $('#fileSelectorInput').val('')
   greenNotification('Uploaded file successfully')
 }
 
