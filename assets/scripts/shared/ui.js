@@ -5,7 +5,7 @@ const clearForm = function (id) {
 }
 
 const showHomePage = function () {
-  $('#view-file-div').hide()
+  $('#fileView').hide()
   $('#home-page').show()
 }
 
