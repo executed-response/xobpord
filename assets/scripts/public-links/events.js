@@ -18,7 +18,10 @@ const onViewPublicFile = function (id) {
       }
       $('#to-main-site').on('click', loadMainSite)
     })
-    .catch(ui.onViewPublicFileFailure)
+    .catch(() => {
+      ui.onViewPublicFileFailure()
+      $('#to-sign-in').on('click', loadMainSite)
+    })
 }
 
 const loadMainSite = function (event) {

@@ -2,6 +2,7 @@
 
 const publicFileViewHandlebar = require('../templates/publicFileView.handlebars')
 const tagHandlebar = require('../templates/tag.handlebars')
+const fileNotFoundHandlebar = require('../templates/fileNotFound.handlebars')
 const config = require('../config')
 
 const onViewPublicFileSuccess = function (response) {
@@ -23,7 +24,7 @@ const onViewPublicFileSuccess = function (response) {
 
 const onViewPublicFileFailure = function () {
   $('#publicView').empty()
-  $('#publicView').html('<h3 class="text-center">File does not exist or is private</h3>')
+  $('#publicView').append(fileNotFoundHandlebar())
 }
 
 const loadMainSite = function () {
