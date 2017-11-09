@@ -20,7 +20,7 @@
 <li>Font Awesome</li>
 <li>jQuery Tags Input</li>
 <li>Moment.js</li>
-<li>Bootstrap Notifiy</li>
+<li>Bootstrap Notify</li>
 <li>Clipboard</li>
 </ul>
 
