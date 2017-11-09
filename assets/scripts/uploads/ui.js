@@ -22,21 +22,27 @@ const uploadFileFailure = function () {
 }
 
 const viewFilesSuccess = function (files) {
-  files.uploads.sort(function (a, b) {
-    return new Date(b.updatedAt) - new Date(a.updatedAt)
-  })
-  files.uploads.forEach(file => {
-    file._filesize = filesize(file._filesize)
-    file.updatedAt = moment(file.updatedAt).format('lll')
-    file.displayType = 'display: none;'
-    const splitUrl = file._url.split('.')
-    const ext = splitUrl[splitUrl.length - 1]
-    if (ext === 'jpg' || ext === 'png') {
-      file.displayType = 'display: inline-block;'
-    }
-  })
-  $('#upload-table-container').empty()
-  $('#upload-table-container').append(uploadsTableHandlebar(files))
+  console.log('files length is ', files.uploads.length)
+  if (files.uploads.length === 0) {
+    $('#no-files-alert').show()
+  } else {
+    $('#no-files-alert').hide()
+    files.uploads.sort(function (a, b) {
+      return new Date(b.updatedAt) - new Date(a.updatedAt)
+    })
+    files.uploads.forEach(file => {
+      file._filesize = filesize(file._filesize)
+      file.updatedAt = moment(file.updatedAt).format('lll')
+      file.displayType = 'display: none;'
+      const splitUrl = file._url.split('.')
+      const ext = splitUrl[splitUrl.length - 1]
+      if (ext === 'jpg' || ext === 'png') {
+        file.displayType = 'display: inline-block;'
+      }
+    })
+    $('#upload-table-container').empty()
+    $('#upload-table-container').append(uploadsTableHandlebar(files))
+  }
 }
 
 const viewFilesFailure = function () {
