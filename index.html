@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Xobpord</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="https://use.fontawesome.com/2bb4b018e5.js"></script>
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid px-0">
+
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <span class="navbar-brand"><img src="https://i.imgur.com/KsPsogy.png" style="width: 32px; height: 32px;">Xobpord</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="navbar-toggler-icon"></div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="active-after-signin nav-item" style="display: none;">
+              <a class="nav-link" id="change-password-form">Change Password</a>
+            </li>
+            <li class="active-after-signin nav-item active" style="display: none;">
+              <a class="nav-link" id="sign-out">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="fileView">
+      </div>
+
+      <div id="publicView">
+      </div>
+
+      <div class="active-after-signin" id="home-page" style="display: none;">
+        <!-- upload form -->
+          <div class="col-6 col-lg-4 ml-auto pb-3 pt-3">
+            <div class="input-group">
+              <input type="text" class="form-control" id="file-lookup-id" placeholder="Search for file ID..." aria-label="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" id="file-lookup" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+
+          <div class="row justify-content-center" id="upload-form-div">
+            <div class="col-12">
+              <form class="mb-1" id="upload-form">
+                <div class="input-group">
+                   <span class="input-group-btn">
+                       <button type="button" class="btn btn-secondary btn-file" id="browseFileButton">Browse&hellip;</button>
+                       <input type="file" name="file" id="fileSelectorInput" style="position:absolute; top:-1000px;" multiple>
+                   </span>
+                   <input type="text" id="uploadFileTextDisplay" value="Select files to upload (max size 15 MB or 20 files)" class="form-control" readonly>
+                   <span class="input-group-btn">
+                     <button id="home-upload-button" type="submit" class="btn btn-primary" name="submit">Upload</button>
+                   </span>
+               </div>
+             </form>
+            </div>
+        </div>
+        <div id="upload-table-container"></div>
+      </div>
+
+      <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Delete Upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Are you sure that you want to delete this file?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteUploadConfirm">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!--  -->
+      <!-- auth forms -->
+      <div class="container-fluid auth-forms" id="auth">
+
+        <!-- sign-in -->
+        <div class="row justify-content-center mt-1" id="sign-in-div" style="display: none;">
+          <div class="col-12 col-md-8 col-xl-6">
+            <form class="mb-1" id="sign-in">
+              <h3>Sign In</h3>
+              <div class="form-group">
+                <label for="sign-in-email">Email</label>
+                <input type="email" class="form-control" id="sign-in-email" name="credentials[email]" placeholder="name@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="sign-in-password">Password</label>
+                <input type="password" class="form-control" id="sign-in-password" name="credentials[password]" placeholder="Password" required>
+              </div>
+              <button type="submit" class="btn btn-primary" name="submit">Sign in</button>
+            </form>
+            <div class="pt-2">
+            <a href="#" id="new-user">New user?</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- sign-up -->
+        <div class="row justify-content-center mt-1" id="sign-up-div" style="display: none;">
+          <div class="col-12 col-md-8 col-xl-6">
+            <form class="mb-1" id="sign-up">
+              <h3>Sign Up</h3>
+              <div class="form-group">
+                <label for="sign-up-email">Email</label>
+                <input type="email" class="form-control" id="sign-up-email" name="credentials[email]" placeholder="name@example.com">
+              </div>
+              <div class="form-group">
+                <label for="sign-up-password">Password</label>
+                <input type="password" class="form-control" id="sign-up-password" name="credentials[password]" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="sign-up-password-conf">Password confirmation</label>
+                <input type="password" class="form-control" id="sign-up-password-conf" name="credentials[password_confirmation]" placeholder="Re-enter password">
+              </div>
+              <button type="button" class="btn btn-secondary" id="new-user-cancel" name="cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary" name="submit">Sign up</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- change password -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form id="change-password">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="old-password">Old Password</label>
+                      <input type="password" class="form-control" name="passwords[old]" placeholder="Old Password" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="new-password">New Password</label>
+                      <input type="password" class="form-control" name="passwords[new]" placeholder="New Password" required>
+                    </div>
+                  </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </body>
+</html>
