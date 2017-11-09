@@ -2,6 +2,7 @@
 
 const publicFileViewHandlebar = require('../templates/publicFileView.handlebars')
 const tagHandlebar = require('../templates/tag.handlebars')
+const fileNotFoundHandlebar = require('../templates/fileNotFound.handlebars')
 const config = require('../config')
 
 const onViewPublicFileSuccess = function (response) {
@@ -10,7 +11,7 @@ const onViewPublicFileSuccess = function (response) {
   response.upload.displayType = 'display: none;'
   const splitUrl = response.upload._url.split('.')
   const ext = splitUrl[splitUrl.length - 1]
-  if (ext === 'jpg' || ext === 'png') {
+  if (ext === 'jpg' || ext === 'png' || ext === 'gif' || ext === 'gifv' || ext === 'jpeg') {
     response.upload.displayType = 'display: inline-block;'
   }
   if (response.upload.tags) {
@@ -23,7 +24,7 @@ const onViewPublicFileSuccess = function (response) {
 
 const onViewPublicFileFailure = function () {
   $('#publicView').empty()
-  $('#publicView').html('<h3 class="text-center">File does not exist or is private</h3>')
+  $('#publicView').append(fileNotFoundHandlebar())
 }
 
 const loadMainSite = function () {

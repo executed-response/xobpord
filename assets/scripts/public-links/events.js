@@ -9,7 +9,7 @@ const onViewPublicFile = function (id) {
     .then((response) => {
       const splitUrl = response.upload._url.split('.')
       const ext = splitUrl[splitUrl.length - 1]
-      if (ext === 'jpg' || ext === 'png') {
+      if (ext === 'jpg' || ext === 'png' || ext === 'gif' || ext === 'gifv' || ext === 'jpeg') {
         $('.lightgallery').lightGallery()
         $('#previewFileBtn').show()
         $('#previewFileBtn').on('click', () => {
@@ -18,7 +18,10 @@ const onViewPublicFile = function (id) {
       }
       $('#to-main-site').on('click', loadMainSite)
     })
-    .catch(ui.onViewPublicFileFailure)
+    .catch(() => {
+      ui.onViewPublicFileFailure()
+      $('#to-sign-in').on('click', loadMainSite)
+    })
 }
 
 const loadMainSite = function (event) {
