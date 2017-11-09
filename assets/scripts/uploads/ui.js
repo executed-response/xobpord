@@ -36,7 +36,7 @@ const viewFilesSuccess = function (files) {
       file.displayType = 'display: none;'
       const splitUrl = file._url.split('.')
       const ext = splitUrl[splitUrl.length - 1]
-      if (ext === 'jpg' || ext === 'png') {
+      if (ext === 'jpg' || ext === 'png' || ext === 'gif' || ext === 'gifv' || ext === 'jpeg') {
         file.displayType = 'display: inline-block;'
       }
     })
