@@ -9,7 +9,7 @@ const onViewPublicFile = function (id) {
     .then((response) => {
       const splitUrl = response.upload._url.split('.')
       const ext = splitUrl[splitUrl.length - 1]
-      if (ext === 'jpg' || ext === 'png') {
+      if (ext === 'jpg' || ext === 'png' || ext === 'gif' || ext === 'gifv' || ext === 'jpeg') {
         $('.lightgallery').lightGallery()
         $('#previewFileBtn').show()
         $('#previewFileBtn').on('click', () => {
