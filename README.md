@@ -1,7 +1,7 @@
 <h1>Xobpord Team Project - Client</h1>
 
 <h3>About the App:</h3>
-<p>This application allows users to house any type of file for safe-keeping. Just sign up for the app with an email address and password, log in, and start uploading your files. For each file, the user will have the options to download, edit, and delete. Users can upload one or more files at once. We are currently allowing users to view a preview of their .jpg and .png files, and might expand this feature to other file types in the future if it proves to be valuable based on user feedback.</p>
+<p>This application allows users to house any type of file for safe-keeping. Just sign up for the app with an email address and password, log in, and start uploading your files. For each file, the user will have the options to download, edit, and delete. Users can upload one or more files at once. We are currently allowing users to view a preview of their .jpg, .png, gif, and gifv files, and might expand this feature to other file types in the future if it proves to be valuable based on user feedback.</p>
 <p>Users can set files to be public or private, but only file owners can make changes. To make sharing public files simple, we have added a file sharing feature where a user can copy the URL to his/her clipboard and another user can view the file without signing in.</p>
 
 <h3>Links:</h3>
@@ -16,6 +16,12 @@
 <li>JavaScript</li>
 <li>jQuery</li>
 <li>Handlebars.js</li>
+<li>Light Gallery</li>
+<li>Font Awesome</li>
+<li>jQuery Tags Input</li>
+<li>Moment.js</li>
+<li>Bootstrap Notifiy</li>
+<li>Clipboard</li>
 </ul>
 
 <h3>Planning and Strategy:</h3>
