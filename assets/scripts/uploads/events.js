@@ -11,6 +11,10 @@ const sharedUi = require('../shared/ui')
 const onUploadFile = function (event) {
   event.preventDefault()
   const data = new FormData(event.target)
+  if ($('#fileSelectorInput').val() === '') {
+    return
+  }
+  $('#home-upload-button').prop('disabled', true)
   api.uploadFile(data)
     .then(ui.uploadFileSuccess)
     .then(onViewFiles)
