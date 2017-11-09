@@ -10,6 +10,7 @@ const redNotification = require('../shared/ui').redNotification
 const editFileHandlebars = require('../templates/editFile.handlebars')
 const readOnlyFileHandlebars = require('../templates/readOnlyView.handlebars')
 const tagHandlebar = require('../templates/tag.handlebars')
+const nofilesalert = require('../templates/noFiles.handlebars')
 
 const uploadFileSuccess = function () {
   $('#uploadFileTextDisplay').val('Select files to upload')
@@ -22,11 +23,11 @@ const uploadFileFailure = function () {
 }
 
 const viewFilesSuccess = function (files) {
+  $('#upload-table-container').empty()
   console.log('files length is ', files.uploads.length)
   if (files.uploads.length === 0) {
-    $('#no-files-alert').show()
+    $('#upload-table-container').append(nofilesalert())
   } else {
-    $('#no-files-alert').hide()
     files.uploads.sort(function (a, b) {
       return new Date(b.updatedAt) - new Date(a.updatedAt)
     })
@@ -40,7 +41,6 @@ const viewFilesSuccess = function (files) {
         file.displayType = 'display: inline-block;'
       }
     })
-    $('#upload-table-container').empty()
     $('#upload-table-container').append(uploadsTableHandlebar(files))
   }
 }
