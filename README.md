@@ -47,6 +47,7 @@
 <li>Allow users to assign collaborators for their files.</li>
 <li>Show progress bar when users are uploading files.</li>
 </li>
+</ul>
 
 <h3>Wireframes:</h3>
 <p>https://i.imgur.com/Z3albtS.jpg</p>
