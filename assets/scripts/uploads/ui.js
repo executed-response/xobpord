@@ -24,7 +24,6 @@ const uploadFileFailure = function () {
 
 const viewFilesSuccess = function (files) {
   $('#upload-table-container').empty()
-  console.log('files length is ', files.uploads.length)
   if (files.uploads.length === 0) {
     $('#upload-table-container').append(nofilesalert())
   } else {
