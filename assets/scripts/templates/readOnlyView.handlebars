@@ -22,10 +22,7 @@
         </li>
       </ul>
       <div class="card-body btn-group-lg text-center" role="group" aria-label="File sharing link">
-        <button id="view-delete-button" type="button" class="fa fa-trash fa-2x p-2 btn-danger" data-toggle="modal" data-id="{{ upload._id }}" href="#confirmDeleteModal"></button>
         <a href={{ upload._url }}><button id="public-download-button" type="button" class="fa fa-download fa-2x p-2 btn-info" data-id="{{ upload._id }}"></button></a>
-        <button id="view-save-button" type="submit" name="submit" class="fa fa-floppy-o fa-2x p-2 btn-success" aria-hidden="true" data-id="{{ upload._id }}"></button>
-      </div>
     </form>
       <div class="input-group card-body text-center" aria-label="File sharing link">
         <span class="input-group-addon"><i class="fa fa-share"></i></span>
