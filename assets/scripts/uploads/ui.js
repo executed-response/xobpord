@@ -17,11 +17,13 @@ const uploadFileSuccess = function () {
   $('#fileSelectorInput').val('')
   greenNotification('Uploaded file successfully')
   $('#home-upload-button').prop('disabled', false)
+  $('#home-upload-button').html('Upload')
 }
 
 const uploadFileFailure = function () {
   redNotification('File failed to upload')
   $('#home-upload-button').prop('disabled', false)
+  $('#home-upload-button').html('Upload')
 }
 
 const viewFilesSuccess = function (files) {

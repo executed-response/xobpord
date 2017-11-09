@@ -15,6 +15,7 @@ const onUploadFile = function (event) {
     return
   }
   $('#home-upload-button').prop('disabled', true)
+  $('#home-upload-button').html('<i class="fa fa-refresh fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span>')
   api.uploadFile(data)
     .then(ui.uploadFileSuccess)
     .then(onViewFiles)
