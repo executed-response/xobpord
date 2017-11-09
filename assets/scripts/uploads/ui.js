@@ -13,13 +13,17 @@ const tagHandlebar = require('../templates/tag.handlebars')
 const nofilesalert = require('../templates/noFiles.handlebars')
 
 const uploadFileSuccess = function () {
-  $('#uploadFileTextDisplay').val('Select files to upload')
+  $('#uploadFileTextDisplay').val('Select files to upload (max size 15 MB or 20 files)')
   $('#fileSelectorInput').val('')
   greenNotification('Uploaded file successfully')
+  $('#home-upload-button').prop('disabled', false)
+  $('#home-upload-button').html('Upload')
 }
 
 const uploadFileFailure = function () {
   redNotification('File failed to upload')
+  $('#home-upload-button').prop('disabled', false)
+  $('#home-upload-button').html('Upload')
 }
 
 const viewFilesSuccess = function (files) {
